@@ -23,5 +23,5 @@ if($count == 0)
 	//echo "Must login to view this page";
 }
 else
-{echo 'login success';}
+{echo 'login success';} 
 ?> 
