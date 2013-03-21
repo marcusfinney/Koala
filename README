@@ -1,0 +1,17 @@
+Current project is up on koalaklub.netau.net (last updated 3/20/13)
+
+Setup Instructions:
+- Install WAMP (or your OSs equivalent): http://www.wampserver.com/en/
+- place the Koala project folder in your /wamp/www folder
+- type 'localhost' in your browser's address bar and hit enter
+- click on phpmyadmin
+- click on the Databases tab and create a new databased named 'Koala'
+- click on the new koala database on the left-hand sidebar
+- click on the Import tab, choose the KoalaDB.sql file that's in the Koala project folder, and click on Go at the bottom
+
+Check to make sure it's working:
+- go to 'localhost' and click on Koala (or just go to localhost/Koala/)
+- select Doctor, username: marcusfinney, password: 10
+- if you get a "Welcome back Dr. Marcus Finney!" message you're good.
+
+NOTE: Windows users seem to get some PHP on login but will still get the "Welcome back" message
