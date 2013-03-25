@@ -3,8 +3,8 @@
  		<title>Login</title>
  	<head>
  <body>
- 
- <form method = "post" action = "checklogin.php">	
+
+ <form method = "post" action = "checklogin.php">
  <table>
  	<tr>
  		<td>Association:</td>
@@ -28,4 +28,3 @@
 </form>
 </body>
 </html>
- 
