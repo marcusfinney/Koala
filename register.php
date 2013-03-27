@@ -97,7 +97,6 @@ Please fill in the following information please...
 	 		<td>Association:</td>
 			<td><select name="association">
  				<option value="">-Select-</option>
- 				<option value="2">Nurse</option>
  				<option value="3">Patient</option>
  			</select></td>
 	 	</tr>	 
