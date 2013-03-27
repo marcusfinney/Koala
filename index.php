@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Well-Check Clinic | Login</title>
+        <title>Login | Well-Check Clinic</title>
         <link rel="stylesheet" href="css/style.css">
     <head>
 
@@ -41,5 +41,12 @@
             </tr>
         </table>
         </form>
+
+        <!-- alternate method to display incorrect login error using an alert box -->
+        <?php
+            // if ($_GET and $_GET["error"] == "incorrectlogin") {
+            //     echo '<script>alert("Incorrent username and/or password")</script>';
+            // }
+        ?>
     </body>
 </html>

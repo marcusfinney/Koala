@@ -18,10 +18,10 @@ $result=mysql_query($sql);
 
 //$count=mysql_num_rows($result);
 
-if($count == 0)
-{
-	//echo "Must login to view this page";
-}
-else
-{echo 'login success';}
+// if($count == 0)
+// {
+// 	//echo "Must login to view this page";
+// }
+// else
+// {echo 'login success';}
 ?> 

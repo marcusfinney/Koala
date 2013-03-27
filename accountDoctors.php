@@ -1,24 +1,28 @@
-<?php
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Doctor Account | Well-Check Clinic</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
 
-require_once("logincheck.php");
-?>
-<html>
-	<head>
-		<title>Account</title>
-	</head>
-<body>
-<h3>Account</h3>
-<table>
- 	<tr>		
- 		<td>Welcome back Dr. <?php echo $_SESSION["userrecord"]["firstname"];?> <?php echo $_SESSION["userrecord"]["lastname"];?>!</td>
-	</tr> 	
- 	<tr>		
- 		<td><a href="register.php"><button>Register a Patient</button></a></td>
-	</tr>
- 	<tr>		
- 		<td><br><br><br><a href="logout.php">Logout</a></td>
-	</tr>
-</table>
+    <body>
+        <?php
+            session_start();
+            echo "<h1>Dr. {$_SESSION["userrecord"]["firstname"]} {$_SESSION["userrecord"]["lastname"]}</h1>";
+        ?>
 
-</body>
+        <!-- need to create page for patient info -->
+        <form method="post" action="">
+            Select a patient: 
+            <select name="Patients">
+                <!-- need to access all patients a doctor has and put them here -->
+                <option>placeholder</option>
+            </select>
+        </form>
+
+        <p><a href="register.php"><button>Register a Patient</button></a></p>
+
+        <p><a href="logout.php">Logout</a></p>
+
+    </body>
 </html>
