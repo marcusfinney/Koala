@@ -1,4 +1,4 @@
-Current project is up on koalaklub.netau.net (last updated 3/20/13)
+Current project is up on http://koalaklub.netau.net (last updated 3/20/13)
 
 Setup Instructions:
 - Install WAMP (or your OSs equivalent): http://www.wampserver.com/en/
@@ -14,4 +14,4 @@ Check to make sure it's working:
 - select Doctor, username: marcusfinney, password: 10
 - if you get a "Welcome back Dr. Marcus Finney!" message you're good.
 
-NOTE: Windows users seem to get some PHP on login but will still get the "Welcome back" message
+NOTE: Windows users seem to get some PHP errors on login (now fixed on Doctor accounts) but will still get the "Welcome back" message

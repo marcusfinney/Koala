@@ -1,12 +1,26 @@
 <!doctype html>
 <html lang="en">
     <head>
+<<<<<<< HEAD
         <title>DataDoc | Login</title>
+=======
+        <title>Login | Well-Check Clinic</title>
+>>>>>>> ff0ff5e226a36b97f5cb2080d345635fea8581cc
         <link rel="stylesheet" href="css/style.css">
     <head>
 
     <body>
+<<<<<<< HEAD
         <h1>DataDoc</h1>
+=======
+        <h1>Welcome to Well-Check Clinic</h1>
+        <!-- displays error message if checklogin.php did not pass login -->
+        <?php
+            if ($_GET and $_GET["error"] == "incorrectlogin") {
+                echo '<p class="error">Incorrect username and/or password.</p>';
+            }
+        ?>
+>>>>>>> ff0ff5e226a36b97f5cb2080d345635fea8581cc
         <form method="post" action="checklogin.php">
         <table>
             <tr>
@@ -35,5 +49,12 @@
             </tr>
         </table>
         </form>
+
+        <!-- alternate method to display incorrect login error using an alert box -->
+        <?php
+            // if ($_GET and $_GET["error"] == "incorrectlogin") {
+            //     echo '<script>alert("Incorrent username and/or password")</script>';
+            // }
+        ?>
     </body>
 </html>
