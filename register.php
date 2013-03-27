@@ -1,12 +1,13 @@
-
 <?php
+
+session_start();
 include 'config.php';
 
 mysql_connect($host, $user, $password) or die("cant connect");
 mysql_select_db($database) or die(mysql_error());
-if($_SESSION["userrecord"]["association"] == (1 || 0))
+if($_SESSION['userrecord']['association'] == (1 || 0))
 {
-	$myiddoctor = $_SESSION["userrecord"]["iddoctor"];
+	$myiddoctor = $_SESSION['userrecord']['iddoctor'];
 if($_POST['submit'])
 {
 	$myusername = ($_POST['username']);
@@ -23,24 +24,24 @@ if($_POST['submit'])
 	if((!$myusername)||(!$mypassword)||(!$myconfirmpassword)||
 		(!$myfirstname)||(!$mylastname)||(!$myemail)||(!$myconfirmemail)||(!$myage)||(!$mygender)||(!$myassociation))
 		{
-			echo "Please fill in all of the fields.";
+			echo "<script>alert('Please fill in all of the fields.');</script>";
 			exit;
 		}
 	//makes sure user email and passwords are correct
 	if((!$mypassword)==($myconfirmpassword))
 	{
-		echo "Please confirm that your passwords match.";
+		echo "<script>alert('Please confirm that your passwords match.');</script>";
 		exit;
 	}
 	if((!$myemail)==($myconfirmemail))
 	{
-		echo "Please confirm that your emails match.";
+		echo "<script>alert('Please confirm that your emails match.');</script>";
 		exit;
 	}
 	//makes sure user has made all selections
-	if(($myassociation || $mygender) == "-Select-")
+	if(($myassociation || $mygender) == "")
 	{
-		echo "Please make all selects.";
+		echo "<script>alert('Please make all selects.');</script>";
 		exit;
 	}
 	if($myassociation == 2)
@@ -55,14 +56,21 @@ if($_POST['submit'])
 		exit;
 	}
 	
-	$sql = "INSERT INTO {$location} (iddoctor, username, password, email, firstname, lastname, age, gender) VALUES ('$myiddoctor','$myusername','$mypassword','$myemail','$myfirstname','$mylastname','$myage','$mygender')";
+	$sql = "INSERT INTO {$location} (iddoctor, username, password, email, firstname, lastname, age, gender, association) VALUES ('$myiddoctor','$myusername','$mypassword','$myemail','$myfirstname','$mylastname','$myage','$mygender', '$myassociation')";
 	$result = mysql_query($sql);
 	
 	if ($result) 
 	{
-   		echo "<script>alert('You have successfully registered.');</script>";
+   		echo "<script>alert('You have successfully registered a new user.');</script>";
+		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=accountDoctors.php">';    
+
 	}
 }
+}
+else
+{
+    header("Location: index.php");
+    die();
 }
 ?>
 <html>
@@ -128,6 +136,9 @@ Please fill in the following information please...
  				<option value="male">male</option>
  				<option value="female">female</option>
  			</select></td>
+	 	</tr>
+	 	<tr>
+	 		<td>Your patient's doctor ID is: <?php echo $_SESSION['userrecord']['iddoctor'];?></td>
 	 	</tr>
 		<tr>
 			<td colspan="2"><input type="submit" name="submit" value="Register"></td>

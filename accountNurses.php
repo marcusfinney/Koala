@@ -1,6 +1,13 @@
 <?php
-
+ob_start(); 
 require_once("logincheck.php");
+if (!isset($_SESSION['username']))
+{
+    header("Location: index.php");
+    die();
+    echo "<script type='text/javascript'>alert('Incorrect username/password');</script>";
+
+}
 ?>
 <html>
 	<head>

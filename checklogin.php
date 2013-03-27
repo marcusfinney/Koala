@@ -1,5 +1,5 @@
 <?php
- ob_start(); 
+ob_start(); 
 
 session_start();
 
@@ -19,7 +19,7 @@ $result=mysql_query($sql);
 
 $count=mysql_num_rows($result);
 
-if($count == 1){
+if($count > 0){
 	$_SESSION["username"] = $myusername;
 	$_SESSION["password"] = $mypassword;
 	$_SESSION["userrecord"] = mysql_fetch_assoc($result);
@@ -31,7 +31,12 @@ if($count == 1){
 	{header("location:accountPatients.php");}
 	else
 	{header("location:accountAdmins.php");}}
-else{echo "<script type='text/javascript'>alert('Incorrect username/password');</script>";}
+elseif($count == 0)
+{    
+	echo "<script type='text/javascript'>alert('Incorrect username/password');</script>";
+	echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php">';    
+
+}
 ?>
 <html>
 	<head>

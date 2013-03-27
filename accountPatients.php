@@ -1,6 +1,13 @@
 <?php
-
+ob_start(); 
 require_once("logincheck.php");
+if (!isset($_SESSION['username']))
+{
+    header("Location: index.php");
+    die();
+    echo "<script type='text/javascript'>alert('Incorrect username/password');</script>";
+
+}
 ?>
 <html>
 	<head>
@@ -12,7 +19,23 @@ Welcome back <?php echo $_SESSION["userrecord"]["firstname"];?> <?php echo $_SES
 <a href="logout.php">Logout</a>
 <table>
 	<tr>		
- 		<td>Your doctor is </td>
+ 		<td>Your doctor is 
+ 			<?php 
+ 			
+ 				$myiddoctor = $_SESSION["userrecord"]["iddoctor"];
+ 				session_start();
+
+				include 'config.php';
+
+				mysql_connect($host, $user, $password) or die("cant connect");
+				mysql_select_db($database) or die(mysql_error());
+				$usertable = 'Doctors';
+				$sql="SELECT * FROM {$usertable} WHERE iddoctor='{$myiddoctor}'";
+				$result=mysql_query($sql);
+
+				$count=mysql_num_rows($result);
+				if($count > 0){echo $_SESSION["userrecord"]["firstname"];}
+?></td>
 	</tr>
  	<tr>		
  		<td></td>

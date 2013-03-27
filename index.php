@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Well-Check Clinic | Login</title>
+        <title>DataDoc | Login</title>
         <link rel="stylesheet" href="css/style.css">
     <head>
 
     <body>
-        <h1>Welcome to Well-Check Clinic</h1>
+        <h1>DataDoc</h1>
         <form method="post" action="checklogin.php">
         <table>
             <tr>
