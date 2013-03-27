@@ -1,3 +1,15 @@
+<?php 
+session_start();
+ob_start(); 
+
+if (!isset($_SESSION['username']))
+{
+    header("Location: index.php?error=unauthorized");
+    die();
+}
+else
+?>
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -7,7 +19,7 @@
 
     <body>
         <?php
-            session_start();
+            //session_start();
             echo "<h1>Dr. {$_SESSION["userrecord"]["firstname"]} {$_SESSION["userrecord"]["lastname"]}</h1>";
 
             include 'config.php';

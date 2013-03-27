@@ -1,13 +1,13 @@
-<?php
+<?php 
+session_start();
 ob_start(); 
-require_once("logincheck.php");
+
 if (!isset($_SESSION['username']))
 {
-    header("Location: index.php");
+    header("Location: index.php?error=unauthorized");
     die();
-    echo "<script type='text/javascript'>alert('Incorrect username/password');</script>";
-
 }
+else
 ?>
 <html>
 	<head>
