@@ -1,12 +1,15 @@
+<!DOCTYPE html>
+
 <?php
 
 session_start();
 session_destroy();
 ?>
 
-<html>
+<html lang="en">
 	<head>
 		<title>You have Logged Out!</title>
+        <link rel="stylesheet" href="css/style.css">
 	</head>
 <body>
 You have logged out! <br>

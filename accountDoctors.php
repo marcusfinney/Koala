@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <?php 
 session_start();
 ob_start(); 
@@ -8,9 +10,21 @@ if (!isset($_SESSION['username']))
     die();
 }
 else
+{
+    $accountType = $_SESSION["userrecord"]["association"];
+    if ($accountType == 2)
+    {
+        header("Location: accountNurses.php?error=unauthorized");
+        die();
+    }
+    if ($accountType == 3)
+    {
+        header("Location: accountPatients.php?error=unauthorized");
+        die();
+    }
+}
 ?>
 
-<!doctype html>
 <html lang="en">
     <head>
         <title>Doctor Account | Well-Check Clinic</title>
@@ -55,5 +69,10 @@ else
 
         <p><a href="logout.php"><button>Logout</button></a></p>
 
+        <?php
+            if ($_GET and $_GET["error"] == "unauthorized") {
+               echo '<script>alert("You are not authorized to view that page.")</script>';
+            }
+        ?>
     </body>
 </html>

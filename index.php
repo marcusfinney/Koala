@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Login | Well-Check Clinic</title>
@@ -42,7 +42,6 @@
         </table>
         </form>
 
-        <!-- alternate method to display incorrect login error using an alert box -->
         <?php
             if ($_GET and $_GET["error"] == "unauthorized") {
                echo '<script>alert("You must be logged to view that page.")</script>';
