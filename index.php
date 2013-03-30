@@ -11,7 +11,7 @@
         <!-- displays error message if checklogin.php did not pass login -->
         <?php
         	if ($_GET and $_GET["error"] == "incorrectlogin") {
-            	echo '<p class="error">Incorrect username and/or password.</p>';
+            	echo '<p class="label label-important">Incorrect username and/or password.</p>';
        		}
         ?>
         <form method="post" action="checklogin.php">
@@ -36,7 +36,7 @@
                 <td><input type="password" name="password"></td>
             </tr>
             <tr>
-                <td><input type="submit" name="submit" value="Login"></td>
+                <td><input class="btn btn-primary" type="submit" name="submit" value="Login"></td>
                 <!-- THIS CURRENTLY GOES NOWHERE -->
                 <td><a class="small" href="">Forgot username or password?</a></td>
             </tr>
