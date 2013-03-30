@@ -27,7 +27,9 @@ else
 
 <html lang="en">
 	<head>
-		<title>Account</title>
+		<title>Nurse Account | Well-Check Clinic</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/style.css">
 	</head>
 <body>

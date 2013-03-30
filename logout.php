@@ -9,6 +9,8 @@ session_destroy();
 <html lang="en">
 	<head>
 		<title>You have Logged Out!</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/style.css">
 	</head>
 <body>

@@ -1,15 +1,39 @@
-body {
-    font-family: arial, sans-serif;
+.login-content {
+	margin-top: 20px;
+	width: 560px;
 }
 
-/* For text you want to display smaller.
-   Currently used by 'Forgot username/password' link */
-.small {
-    font-size: 0.8em;
-}
 
-/* For error messages to user.
-   Currently used by 'Incorrect username/password' error message */
-.error {
-    color: red;
+/* fancy animation stuff for incorrect login error message */
+.login-error {
+	animation-name: showMessage;
+	animation-duration: 1.5s;
+	-moz-animation-name: showMessage;
+	-moz-animation-duration: 1.5s;
+	-webkit-animation-name: showMessage;
+	-webkit-animation-duration: 1.5s;
+}
+@keyframes showMessage {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-moz-keyframes showMessage {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-webkit-keyframes showMessage {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

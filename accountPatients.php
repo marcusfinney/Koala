@@ -27,8 +27,10 @@ else
 
 <html lang="en">
 	<head>
-		<title>Account</title>
-		<link rel="stylesheet" href="css/style.css">
+		<title>Patient Account | Well-Check Clinic</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/style.css">
 	</head>
 <body>
 <h3>Account</h3>
@@ -40,7 +42,6 @@ Welcome back <?php echo $_SESSION["userrecord"]["firstname"];?> <?php echo $_SES
  			<?php 
  			
  				$myiddoctor = $_SESSION["userrecord"]["iddoctor"];
- 				session_start();
 
 				include 'config.php';
 

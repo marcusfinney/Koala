@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 
 session_start();
@@ -8,64 +9,64 @@ mysql_select_db($database) or die(mysql_error());
 if($_SESSION['userrecord']['association'] == (1 || 0))
 {
 	$myiddoctor = $_SESSION['userrecord']['iddoctor'];
-if($_POST['submit'])
-{
-	$myusername = ($_POST['username']);
-	$mypassword = ($_POST['password']);
-	$myconfirmpassword = ($_POST['confirmpassword']);
-	$myfirstname = ($_POST['firstname']);	
-	$mylastname = ($_POST['lastname']);	
-	$myemail = ($_POST['email']);	
-	$myconfirmemail = ($_POST['confirmemail']);	
-	$myage = ($_POST['age']);	
-	$mygender = ($_POST['gender']);	
-	$myassociation = ($_POST['association']);
-	//makes sure all fields are filled in
-	if((!$myusername)||(!$mypassword)||(!$myconfirmpassword)||
-		(!$myfirstname)||(!$mylastname)||(!$myemail)||(!$myconfirmemail)||(!$myage)||(!$mygender)||(!$myassociation))
+	if($_POST)
+	{
+		$myusername = ($_POST['username']);
+		$mypassword = ($_POST['password']);
+		$myconfirmpassword = ($_POST['confirmpassword']);
+		$myfirstname = ($_POST['firstname']);	
+		$mylastname = ($_POST['lastname']);	
+		$myemail = ($_POST['email']);	
+		$myconfirmemail = ($_POST['confirmemail']);	
+		$myage = ($_POST['age']);	
+		$mygender = ($_POST['gender']);	
+		$myassociation = ($_POST['association']);
+		//makes sure all fields are filled in
+		if((!$myusername)||(!$mypassword)||(!$myconfirmpassword)||
+			(!$myfirstname)||(!$mylastname)||(!$myemail)||(!$myconfirmemail)||(!$myage)||(!$mygender)||(!$myassociation))
+			{
+				echo "<script>alert('Please fill in all of the fields.');</script>";
+				exit;
+			}
+		//makes sure user email and passwords are correct
+		if((!$mypassword)==($myconfirmpassword))
 		{
-			echo "<script>alert('Please fill in all of the fields.');</script>";
+			echo "<script>alert('Please confirm that your passwords match.');</script>";
 			exit;
 		}
-	//makes sure user email and passwords are correct
-	if((!$mypassword)==($myconfirmpassword))
-	{
-		echo "<script>alert('Please confirm that your passwords match.');</script>";
-		exit;
-	}
-	if((!$myemail)==($myconfirmemail))
-	{
-		echo "<script>alert('Please confirm that your emails match.');</script>";
-		exit;
-	}
-	//makes sure user has made all selections
-	if(($myassociation || $mygender) == "")
-	{
-		echo "<script>alert('Please make all selects.');</script>";
-		exit;
-	}
-	if($myassociation == 2)
-	{$location= 'Nurses';}
-	if($myassociation == 3)
-	{$location= 'Patients';}
-	//checks for username or email already in system
-	$mycheck = mysql_query("SELECT * FROM {$location} WHERE username='$myusername'");
-	if(mysql_num_rows($mycheck) == 1)
-	{
-		echo "The username or email is already taken.";
-		exit;
-	}
-	
-	$sql = "INSERT INTO {$location} (iddoctor, username, password, email, firstname, lastname, age, gender, association) VALUES ('$myiddoctor','$myusername','$mypassword','$myemail','$myfirstname','$mylastname','$myage','$mygender', '$myassociation')";
-	$result = mysql_query($sql);
-	
-	if ($result) 
-	{
-   		echo "<script>alert('You have successfully registered a new user.');</script>";
-		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=accountDoctors.php">';    
+		if((!$myemail)==($myconfirmemail))
+		{
+			echo "<script>alert('Please confirm that your emails match.');</script>";
+			exit;
+		}
+		//makes sure user has made all selections
+		if(($myassociation || $mygender) == "")
+		{
+			echo "<script>alert('Please make all selects.');</script>";
+			exit;
+		}
+		if($myassociation == 2)
+		{$location= 'Nurses';}
+		if($myassociation == 3)
+		{$location= 'Patients';}
+		//checks for username or email already in system
+		$mycheck = mysql_query("SELECT * FROM {$location} WHERE username='$myusername'");
+		if(mysql_num_rows($mycheck) == 1)
+		{
+			echo "The username or email is already taken.";
+			exit;
+		}
+		
+		$sql = "INSERT INTO {$location} (iddoctor, username, password, email, firstname, lastname, age, gender, association) VALUES ('$myiddoctor','$myusername','$mypassword','$myemail','$myfirstname','$mylastname','$myage','$mygender', '$myassociation')";
+		$result = mysql_query($sql);
+		
+		if ($result) 
+		{
+	   		echo "<script>alert('You have successfully registered a new user.');</script>";
+			echo '<META HTTP-EQUIV="Refresh" Content="0; URL=accountDoctors.php">';    
 
+		}
 	}
-}
 }
 else
 {
@@ -76,6 +77,9 @@ else
 <html>
 	<head>
 		<title>Register Your Account</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/style.css">
 	</head>
 <body>
 
