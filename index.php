@@ -13,6 +13,21 @@
             <br>
 
             <form class="form-horizontal" method="post" action="checklogin.php">
+
+                <div class="control-group">
+                    <label class="control-label" for="username">Username</label>
+                    <div class="controls">
+                        <input type="text" id="username" name="username" autofocus>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                        <input type="password" id="password" name="password">
+                    </div>
+                </div>
+
                 <div class="control-group">
                     <label class="control-label" for="association">Association</label>
                     <div class="controls">
@@ -24,18 +39,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="username">Username</label>
-                    <div class="controls">
-                        <input type="text" id="username" name="username" autofocus>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="password">Password</label>
-                    <div class="controls">
-                        <input type="password" id="password" name="password">
-                    </div>
-                </div>
+
                 <div class="control-group">
                     <div class="controls">
                         <!-- displays error message if checklogin.php did not pass login -->
@@ -49,6 +53,7 @@
                         <small><a href="">Forgot password?</a></small>
                     </div>
                 </div>
+
             </form>
         </div>
 

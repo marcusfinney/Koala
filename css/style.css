@@ -1,43 +1,66 @@
+body {
+	background-color: #fbfbfb;
+}
+
+
+/* login.php */
 .login-content {
 	margin-top: 20px;
 	width: 560px;
 }
 
 
-/* fancy animation stuff for incorrect login error message */
-.fadeIn {
-	animation-name: showMessage;
-	animation-duration: 1s;
-	-moz-animation-name: showMessage;
-	-moz-animation-duration: 1s;
-	-webkit-animation-name: showMessage;
-	-webkit-animation-duration: 1s;
-}
-@keyframes showMessage {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-@-moz-keyframes showMessage {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-@-webkit-keyframes showMessage {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
+/* accountDoctors.php */
 .clear {
 	clear: both;
+}
+.nav {
+	margin-bottom: 0px;
+}
+.tabcontent h3 {
+	margin-bottom: 0;
+}
+.tabcontent {
+	background-color: white;
+	border: 1px solid #ddd;
+	border-top: none;
+	border-radius: 0 0 4px 4px
+}
+
+
+/*
+	fade-in animation
+	to use, just add class="fadeIn" to any tag
+*/
+.fadeIn {
+	animation-name: fadeIn;
+	animation-duration: 1s;
+	-moz-animation-name: fadeIn;
+	-moz-animation-duration: 1s;
+	-webkit-animation-name: fadeIn;
+	-webkit-animation-duration: 1s;
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-moz-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
