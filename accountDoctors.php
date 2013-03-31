@@ -46,12 +46,12 @@ else
             -->
 
             <ul class="clear nav nav-tabs">
-                <li class="active"><a href="">Select Patient</a></li>
-                <li><a href="">Vitals</a></li>
-                <li><a href="">Notes</a></li>
-                <li><a href="">Messages</a></li>
-                <li><a href="">Prescriptions</a></li>
-                <li><a href="">Edit Info</a></li>
+                <li class="active"><a href="accountDoctors.php">Select Patient</a></li>
+                <li><a href="accountDoctors.php">Vitals</a></li>
+                <li><a href="accountDoctors.php">Notes</a></li>
+                <li><a href="accountDoctors.php">Messages</a></li>
+                <li><a href="accountDoctors.php">Prescriptions</a></li>
+                <li><a href="accountDoctors.php">Edit Info</a></li>
             </ul>
 
             <div class="fadeIn tabcontent">
@@ -187,7 +187,7 @@ else
                                 <label class="control-label" for="username">Username</label>
                                 <div class="controls">
                                     <?php
-                                        if ($_GET and $_GET["error"] == "usernametaken") {
+                                        if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "usernametaken") {
                                             echo '<p class="label label-warning">That username is taken.</p><br>';
                                         }
                                     ?>
@@ -199,7 +199,7 @@ else
                                 <label class="control-label" for="password">Password</label>
                                 <div class="controls">
                                     <?php
-                                        if ($_GET and $_GET["error"] == "passwordmismatch") {
+                                        if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "passwordmismatch") {
                                             echo '<p class="label label-important">Passwords do not match.</p><br>';
                                         }
                                     ?>
@@ -217,7 +217,7 @@ else
                             <div class="control-group">
                                 <div class="controls">
                                     <?php
-                                        if ($_GET and $_GET["error"] == "incompleteform") {
+                                        if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "incompleteform") {
                                             echo '<p class="label label-important">You must fill out all fields.</p><br>';
                                         }
                                     ?>
@@ -233,14 +233,23 @@ else
         </div>
 
         <?php
-            if ($_GET and $_GET["status"] == "success") {
-               echo '<script>alert("Patient successfully registered.")</script>';
+            if (isset($_GET))
+            {
+                if (isset($_GET["status"]) and $_GET["status"] == "success")
+                {
+                    echo '<script>alert("Patient successfully registered.")</script>';
+                }
+                if (isset($_GET["error"]) and $_GET["error"] == "unauthorized")
+                {
+                    echo '<script>alert("You are not authorized to view that page.")</script>';
+                }
             }
-        ?>
-        <?php
-            if ($_GET and $_GET["error"] == "unauthorized") {
-               echo '<script>alert("You are not authorized to view that page.")</script>';
-            }
+            // if ($_GET and $_GET["status"] and $_GET["status"] == "success") {
+            //    echo '<script>alert("Patient successfully registered.")</script>';
+            // }
+            // if ($_GET and $_GET["error"] and $_GET["error"] == "unauthorized") {
+            //    echo '<script>alert("You are not authorized to view that page.")</script>';
+            // }
         ?>
     </body>
 </html>
