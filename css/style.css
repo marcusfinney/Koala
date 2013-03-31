@@ -5,13 +5,13 @@
 
 
 /* fancy animation stuff for incorrect login error message */
-.login-error {
+.fadeIn {
 	animation-name: showMessage;
-	animation-duration: 1.5s;
+	animation-duration: 1s;
 	-moz-animation-name: showMessage;
-	-moz-animation-duration: 1.5s;
+	-moz-animation-duration: 1s;
 	-webkit-animation-name: showMessage;
-	-webkit-animation-duration: 1.5s;
+	-webkit-animation-duration: 1s;
 }
 @keyframes showMessage {
 	0% {
@@ -36,4 +36,8 @@
 	100% {
 		opacity: 1;
 	}
+}
+
+.clear {
+	clear: both;
 }

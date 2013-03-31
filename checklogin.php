@@ -34,7 +34,6 @@ if ($count == 1) {
 }
 else{
     // return user to login page and mark page with login error
-    echo "<script type='text/javascript'>alert('Incorrect username/password');</script>";
     header("location:index.php?error=incorrectlogin");
 }
 ?>
