@@ -27,7 +27,7 @@
                 <div class="control-group">
                     <label class="control-label" for="username">Username</label>
                     <div class="controls">
-                        <input type="text" id="username" name="username">
+                        <input type="text" id="username" name="username" autofocus>
                     </div>
                 </div>
                 <div class="control-group">

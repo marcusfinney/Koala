@@ -35,7 +35,6 @@ else
 
     <body>
         <?php
-            //session_start();
             echo "<h1>Dr. {$_SESSION["userrecord"]["firstname"]} {$_SESSION["userrecord"]["lastname"]}</h1>";
 
             include 'config.php';
@@ -62,14 +61,14 @@ else
                     echo  "<option value={$row['idpatient']}>{$row['lastname']}, {$row['firstname']}</option>";
                 }
                 echo '  </select>
-                        <input type="submit" name="submit" value="Select Patient">
+                        <input class="btn" type="submit" name="submit" value="Select Patient">
                       </form>';
             }
         ?>
 
-        <p><a href="register.php"><button>Register a Patient</button></a></p>
+        <p><a class="btn" href="register.php">Register a Patient</a></p>
 
-        <p><a href="logout.php"><button>Logout</button></a></p>
+        <p><a class="btn" href="logout.php">Logout</a></p>
 
         <?php
             if ($_GET and $_GET["error"] == "unauthorized") {
