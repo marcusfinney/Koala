@@ -54,7 +54,7 @@ else
                 <li><a href="accountDoctors.php">Edit Info</a></li>
             </ul>
 
-            <div class="fadeIn tabcontent">
+            <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
                 <div class="row">
                     <div class="span6">
                         <!-- <h4>Select a Patient</h4> -->
@@ -188,7 +188,7 @@ else
                                 <div class="controls">
                                     <?php
                                         if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "usernametaken") {
-                                            echo '<p class="label label-warning">That username is taken.</p><br>';
+                                            echo '<p class="label label-warning fadeIn">That username is taken.</p><br>';
                                         }
                                     ?>
                                     <input type="text" id="username" name="username">
@@ -200,7 +200,7 @@ else
                                 <div class="controls">
                                     <?php
                                         if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "passwordmismatch") {
-                                            echo '<p class="label label-important">Passwords do not match.</p><br>';
+                                            echo '<p class="label label-important fadeIn">Passwords do not match.</p><br>';
                                         }
                                     ?>
                                     <input type="password" id="password" name="password">
@@ -218,7 +218,7 @@ else
                                 <div class="controls">
                                     <?php
                                         if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "incompleteform") {
-                                            echo '<p class="label label-important">You must fill out all fields.</p><br>';
+                                            echo '<p class="label label-important fadeIn">You must fill out all fields.</p><br>';
                                         }
                                     ?>
                                     <input class="btn btn-primary" type="submit" value="Register Patient">
