@@ -58,9 +58,8 @@
         </div>
 
         <?php
-            if ($_GET and $_GET["error"] == "unauthorized") {
-               echo '<script>alert("You must be logged to view that page.")</script>';
-            }
+        	if ($_GET and $_GET["error"] == "unauthorized") {echo '<script>alert("You must be logged to view that page.")</script>';}
+			if (isset($_SESSION['username'])){die();}
         ?>
     </body>
 </html>
