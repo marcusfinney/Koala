@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <?php 
 session_start();
 ob_start(); 
@@ -25,6 +23,7 @@ else
 }
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Doctor Account | Well-Check Clinic</title>
