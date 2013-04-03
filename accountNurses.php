@@ -22,6 +22,7 @@ else
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -30,7 +31,107 @@ else
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/style.css">
 	</head>
-<body>
+
+    <body>
+        <div class="container">
+            <?php
+                echo "<h1 class='pull-left'>Nurse {$_SESSION["userrecord"]["firstname"]} {$_SESSION["userrecord"]["lastname"]}</h1>";
+            ?>
+            <a href="logout.php"><h1 class="pull-right btn btn-inverse">Sign Out</h1></a>
+
+            <!--
+                need to create pages for all the tabs
+                planning on making each page have the same 'top' section, just different content
+            -->
+
+            <ul class="clear nav nav-tabs">
+                <li class="active"><a href="accountDoctors.php">Select Patient</a></li>
+                <li><a href="accountNurses.php">Vitals</a></li>
+                <li><a href="accountNurses.php">Notes</a></li>
+                <li><a href="accountNurses.php">Messages</a></li>
+                <li><a href="accountNurses.php">Prescriptions</a></li>
+                <li><a href="accountNurses.php">Edit Info</a></li>
+            </ul>
+
+            <div class="fadeIn tabcontent">
+                <div class="row">
+                    <div class="span12">
+                        <!-- <h4>Select a Patient</h4> -->
+                        <?php
+                            include 'config.php';
+                            mysql_connect($host, $user, $password) or die("cant connect");
+                            mysql_select_db($database) or die(mysql_error());
+
+                            $myID = $_SESSION["userrecord"]["idnurse"];
+
+                            $sql = "SELECT idpatient, firstname, lastname
+                                    FROM Patients
+                                    WHERE idnurse={$myID}";
+                            $mypatients = mysql_query($sql);
+                            
+                            $numberofpatients = mysql_num_rows($mypatients);
+
+                            if ($numberofpatients == 0) {
+                                echo '<p>You have no registered patients.</p>';
+                            }
+                            else {
+                                // ADD THE PAGE FOR VIEWING PATIENT DATA IN THE ACTION FIELD OF NEXT LINE
+
+                                // Non-bootstrapped version
+                                // echo '  <form>
+                                //             <select name="Patients">';
+                                // while ($row = mysql_fetch_assoc($mypatients)) {
+                                //     echo  "     <option value={$row['idpatient']}>{$row['lastname']}, {$row['firstname']}</option>";
+                                // }
+                                // echo '      </select>
+                                //             <br>
+                                //             <input class="btn btn-primary" type="submit" value="Select Patient">
+                                //         </form>';
+
+                                // Bootstrapped version
+                                echo '  <form class="form-horizontal" method="post">
+
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <h3>Select A Patient</h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <select name="Patients">';
+                                while ($row = mysql_fetch_assoc($mypatients)) {
+                                    echo  "             <option value={$row['idpatient']}>{$row['lastname']}, {$row['firstname']}</option>";
+                                }
+                                echo '              </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <input class="btn btn-primary" type="submit" value="Select Patient">
+                                                </div>
+                                            </div>
+
+                                        </form>';
+                            }
+                        ?>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <?php
+            if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "unauthorized")
+            {
+                echo '<script>alert("You are not authorized to view that page.")</script>';
+            }
+        ?>
+    </body>
+<!-- <body>
 <h3>Account</h3>
 Welcome back Nurse <?php echo $_SESSION["userrecord"]["firstname"];?> <?php echo $_SESSION["userrecord"]["lastname"];?>! <br>
 <a href="logout.php">Logout</a>
@@ -44,5 +145,5 @@ Welcome back Nurse <?php echo $_SESSION["userrecord"]["firstname"];?> <?php echo
        echo '<script>alert("You are not authorized to view that page.")</script>';
     }
 ?>
-</body>
+</body> -->
 </html>
