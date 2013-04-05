@@ -50,7 +50,7 @@ else
                 <li><a href="accountDoctors.php">Notes</a></li>
                 <li><a href="accountDoctors.php">Messages</a></li>
                 <li><a href="accountDoctors.php">Prescriptions</a></li>
-                <li><a href="accountDoctors.php">Edit Info</a></li>
+                <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
 
             <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
@@ -89,7 +89,7 @@ else
                                 //         </form>';
 
                                 // Bootstrapped version
-                                echo '  <form class="form-horizontal" method="post">
+                                echo '  <form class="form-horizontal" method="post" action="selectPatient.php">
 
                                             <div class="control-group">
                                                 <div class="controls">
@@ -99,7 +99,7 @@ else
 
                                             <div class="control-group">
                                                 <div class="controls">
-                                                    <select name="Patients">';
+                                                    <select name="Patient">';
                                 while ($row = mysql_fetch_assoc($mypatients)) {
                                     echo  "             <option value={$row['idpatient']}>{$row['lastname']}, {$row['firstname']}</option>";
                                 }
@@ -130,21 +130,21 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="firstname">First Name</label>
                                 <div class="controls">
-                                    <input type="text" id="firstname" name="firstname" autofocus>
+                                    <input type="text" id="firstname" name="firstname" required="required" autofocus>
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="lastname">Last Name</label>
                                 <div class="controls">
-                                    <input type="text" id="lastname" name="lastname">
+                                    <input type="text" id="lastname" name="lastname" required="required">
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="age">Age</label>
                                 <div class="controls">
-                                    <input type="number" min="1" max="150" id="age" name="age">
+                                    <input type="number" min="1" max="150" id="age" name="age" required="required">
                                     <!--
                                     <?php 
                                         echo "<select name='age'>";
@@ -171,7 +171,7 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="email">Email</label>
                                 <div class="controls">
-                                    <input type="email" id="email" name="email">
+                                    <input type="email" id="email" name="email" required="required">
                                 </div>
                             </div>
 
@@ -190,7 +190,7 @@ else
                                             echo '<p class="label label-warning fadeIn">That username is taken.</p><br>';
                                         }
                                     ?>
-                                    <input type="text" id="username" name="username">
+                                    <input type="text" id="username" name="username" required="required">
                                 </div>
                             </div>
 
@@ -202,14 +202,14 @@ else
                                             echo '<p class="label label-important fadeIn">Passwords do not match.</p><br>';
                                         }
                                     ?>
-                                    <input type="password" id="password" name="password">
+                                    <input type="password" id="password" name="password" required="required">
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="confirmpassword">Confirm Password</label>
                                 <div class="controls">
-                                    <input type="password" id="confirmpassword" name="confirmpassword">
+                                    <input type="password" id="confirmpassword" name="confirmpassword" required="required">
                                 </div>
                             </div>
 
@@ -242,13 +242,11 @@ else
                 {
                     echo '<script>alert("You are not authorized to view that page.")</script>';
                 }
+                if (isset($_GET["error"]) and $_GET["error"] == "noneselected")
+                {
+                    echo '<script>alert("You must select a patient.")</script>';
+                }
             }
-            // if ($_GET and $_GET["status"] and $_GET["status"] == "success") {
-            //    echo '<script>alert("Patient successfully registered.")</script>';
-            // }
-            // if ($_GET and $_GET["error"] and $_GET["error"] == "unauthorized") {
-            //    echo '<script>alert("You are not authorized to view that page.")</script>';
-            // }
         ?>
     </body>
 </html>

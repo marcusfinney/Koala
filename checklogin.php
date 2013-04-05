@@ -22,6 +22,7 @@ $count = mysql_num_rows($result);
 if ($count == 1) {
     $_SESSION["username"] = $myusername;
     $_SESSION["password"] = $mypassword;
+    $_SESSION["accountType"] = $usertable;
     $_SESSION["userrecord"] = mysql_fetch_assoc($result);
     if($usertable == 'Doctors')
     {header("location:accountDoctors.php");}

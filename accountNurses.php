@@ -50,12 +50,12 @@ else
                 <li><a href="accountNurses.php">Notes</a></li>
                 <li><a href="accountNurses.php">Messages</a></li>
                 <li><a href="accountNurses.php">Prescriptions</a></li>
-                <li><a href="accountNurses.php">Edit Info</a></li>
+                <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
 
-            <div class="fadeIn tabcontent">
+            <div class="<?php if (!$_GET) echo 'fadeIn ';?>tabcontent">
                 <div class="row">
-                    <div class="span12">
+                    <div class="span4 offset2">
                         <!-- <h4>Select a Patient</h4> -->
                         <?php
                             include 'config.php';
@@ -89,7 +89,7 @@ else
                                 //         </form>';
 
                                 // Bootstrapped version
-                                echo '  <form class="form-horizontal" method="post">
+                                echo '  <form class="form-horizontal" method="post" action="selectPatient.php">
 
                                             <div class="control-group">
                                                 <div class="controls">
@@ -99,7 +99,7 @@ else
 
                                             <div class="control-group">
                                                 <div class="controls">
-                                                    <select name="Patients">';
+                                                    <select name="Patient">';
                                 while ($row = mysql_fetch_assoc($mypatients)) {
                                     echo  "             <option value={$row['idpatient']}>{$row['lastname']}, {$row['firstname']}</option>";
                                 }
@@ -125,25 +125,18 @@ else
         </div>
 
         <?php
-            if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "unauthorized")
+            if (isset($_GET))
             {
-                echo '<script>alert("You are not authorized to view that page.")</script>';
+                if (isset($_GET["error"]) and $_GET["error"] == "unauthorized")
+                {
+                    echo '<script>alert("You are not authorized to view that page.")</script>';
+                }
+                if (isset($_GET["error"]) and $_GET["error"] == "noneselected")
+                {
+                    echo '<script>alert("You must select a patient.")</script>';
+                }
             }
         ?>
-    </body>
-<!-- <body>
-<h3>Account</h3>
-Welcome back Nurse <?php echo $_SESSION["userrecord"]["firstname"];?> <?php echo $_SESSION["userrecord"]["lastname"];?>! <br>
-<a href="logout.php">Logout</a>
-<table>
- 	<tr>		
-	</tr>
-</table>
 
-<?php
-    if ($_GET and $_GET["error"] == "unauthorized") {
-       echo '<script>alert("You are not authorized to view that page.")</script>';
-    }
-?>
-</body> -->
+    </body>
 </html>
