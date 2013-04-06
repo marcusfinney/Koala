@@ -29,6 +29,7 @@ else
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="icon" href="favicon.ico">
 	</head>
 <body>
 <h3>Account</h3>
