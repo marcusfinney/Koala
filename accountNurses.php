@@ -55,7 +55,7 @@ else
 
             <div class="<?php if (!$_GET) echo 'fadeIn ';?>tabcontent">
                 <div class="row">
-                    <div class="span4 offset2">
+                    <div class="span10 offset2">
                         <!-- <h4>Select a Patient</h4> -->
                         <?php
                             include 'config.php';
