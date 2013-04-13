@@ -68,7 +68,7 @@ else
                     <div class="span9 offset3">
                         <!-- <h3><?php echo "{$_SESSION['patientrecord']['lastname']}, {$_SESSION['patientrecord']['firstname']}";?></h3> -->
 
-                        <form class="form-horizontal" method="post" action="">
+                        <form class="form-horizontal" method="post" action="editInfoController.php">
 
                             <!-- UPDATE  `Koala`.`Patients` SET  `email` =  'jose@email.com' WHERE  `Patients`.`idpatient` =14; -->
 
@@ -93,8 +93,8 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="idnurse">Assigned Nurse</label>
                                 <div class="controls">
-                                    <select id="idnurse">
-                                        <option>None Selected</option>
+                                    <select id="idnurse" name="idnurse"<?php if ($accountType == 2) echo ' disabled';?>>
+                                        <option value="0">None Selected</option>
                                         <?php
                                             while ($nurse = mysql_fetch_assoc($nurses))
                                             {
@@ -110,21 +110,21 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="firstname">First Name</label>
                                 <div class="controls">
-                                    <input type="text" id="firstname" name="firstname" value=<?php echo $p["firstname"];?> >
+                                    <input type="text" id="firstname" name="firstname" value=<?php echo $p["firstname"];?> required="required">
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="lastname">Last Name</label>
                                 <div class="controls">
-                                    <input type="text" id="lastname" name="lastname" value=<?php echo $p["lastname"];?> >
+                                    <input type="text" id="lastname" name="lastname" value=<?php echo $p["lastname"];?> required="required">
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="age">Age</label>
                                 <div class="controls">
-                                    <input type="number" min="1" max="150" id="age" name="age" value=<?php echo $p["age"];?> >
+                                    <input type="number" min="1" max="150" id="age" name="age" value=<?php echo $p["age"];?> required="required">
                                     <!--
                                     <?php 
                                         echo "<select name='age'>";
@@ -151,7 +151,7 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="email">Email</label>
                                 <div class="controls">
-                                    <input type="email" id="email" name="email" value=<?php echo $p["email"];?> >
+                                    <input type="email" id="email" name="email" value=<?php echo $p["email"];?> required="required">
                                 </div>
                             </div>
 
@@ -185,7 +185,7 @@ else
                                 <label class="control-label" for="address">Address</label>
                                 <div class="controls">
                                     <!-- <input type="text" id="address" name="address"> -->
-                                    <textarea id="address" name="addess"><?php echo $p["address"];?></textarea>
+                                    <textarea id="address" name="address"><?php echo $p["address"];?></textarea>
                                 </div>
                             </div>
 
