@@ -167,6 +167,7 @@ else
                                 	$heartrate = $row["heartrate"];
                                 	$bloodsugar = $row['bloodsugar'];
                                 	$bloodpressure = $row['bloodpressure'];
+                                	$weight = $row['weight'];
                                 	if($row['timeofday'] == 0){$timeofday = "Morning";}
                                 	if($row['timeofday'] == 1){$timeofday = "Afternoon";}
                                 	if($row['timeofday'] == 2){$timeofday = "Evening";}
@@ -177,8 +178,9 @@ else
  							        		."{$_SESSION['patientrecord']['lastname']}"."<br>"
    											. '<i>'.$timeofday.'</i>' . "<br>"
    											."<br>".'heart rate: ' . '<font color ="red">'.$heartrate.'</font>' . "<br>"
- 							        		.'bloodsugar: ' . '<font color ="blue">'.$bloodsugar.'</font>' . "<br>"
-   											.'bloodpressure: ' . '<font color ="green">'.$bloodpressure.'</font>' . "<br>"  
+ 							        		.'Bloodsugar: ' . '<font color ="blue">'.$bloodsugar.'</font>' . "<br>"
+   											.'Bloodpressure: ' . '<font color ="green">'.$bloodpressure.'</font>' . "<br>"
+   											.'Mass: ' . '<font color ="orange">'.$weight.'</font>'. "<br>"
 											."----------------------------------------------------" . "<br>";
 									$vitalcount++;
  							    } 
