@@ -20,7 +20,7 @@ else
         header("Location: accountNurses.php?error=unauthorized");
         die();
     }
-    if ($accountType == 3)
+    if ($accountType == 3 and !$_POST)
     {
         header("Location: accountPatients.php?error=unauthorized");
         die();
@@ -39,19 +39,19 @@ $email = $_POST["email"];
 $telephone = $_POST["telephone"];
 $address = $_POST["address"];
 
-// make sure required fields aren't empty
+// // make sure required fields aren't empty
 if (!$firstname or !$lastname or !$age or !$gender or !$email)
 {
     header('location: editInfo.php?error=requiredNotDone');
     die();
 }
 
-//connect to database
+// //connect to database
 include 'config.php';
 mysql_connect($host, $user, $password) or die("cant connect");
 mysql_select_db($database) or die(mysql_error());
 
-// run SQL query to update patient record
+// // run SQL query to update patient record
 $sql = "";
 if ($_SESSION["userrecord"]["association"] == 1) {
     $sql = "UPDATE Patients
@@ -61,22 +61,22 @@ if ($_SESSION["userrecord"]["association"] == 1) {
                 email='{$email}', tele='{$telephone}', address='{$address}'
             WHERE idpatient={$idpatient}";
 }
-// don't update nurse if current user is a nurse
-elseif ($_SESSION["userrecord"]["association"] == 2) {
+// // don't update nurse if current user is a nurse
+elseif ($_SESSION["userrecord"]["association"] == 2 or $_SESSION["userrecord"]["association"] == 3) {
     $sql = "UPDATE Patients
             SET firstname='{$firstname}', lastname='{$lastname}',
                 age={$age}, gender='{$gender}',
                 email='{$email}', tele='{$telephone}', address='{$address}'
             WHERE idpatient={$idpatient}";
 }
-// this is here just in case, but don't think it's possible for it to happen
+// // this is here just in case, but don't think it's possible for it to happen
 else {
-    location('location: editInfo.php?status=failure');
+    header('location: editInfo.php?status=failure');
 }
 $newrecord = mysql_query($sql);
 
 
-// updates current patient info in $_SESSION
+// // updates current patient info in $_SESSION
 $sql = "SELECT *
         FROM Patients
         WHERE idpatient={$idpatient}";
@@ -85,8 +85,11 @@ $patient = mysql_fetch_assoc($result);
 
 $_SESSION["patientrecord"] = $patient;
 
+if ($_SESSION["userrecord"]["association"] == 3) {
+    $_SESSION["userrecord"] = $patient;
+}
 
-// return with success status
+// // return with success status
 header("location: editInfo.php?status=success");
 
 ?>

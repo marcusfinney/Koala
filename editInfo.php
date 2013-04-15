@@ -20,11 +20,11 @@ else
         header("Location: accountNurses.php?error=noneselected");
         die();
     }
-    if ($accountType == 3)
-    {
-        header("Location: accountPatients.php?error=unauthorized");
-        die();
-    }
+    // if ($accountType == 3)
+    // {
+    //     header("Location: accountPatients.php?error=unauthorized");
+    //     die();
+    // }
 }
 ?>
 
@@ -93,7 +93,7 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="idnurse">Assigned Nurse</label>
                                 <div class="controls">
-                                    <select id="idnurse" name="idnurse"<?php if ($accountType == 2) echo ' disabled';?>>
+                                    <select id="idnurse" name="idnurse"<?php if ($accountType == 2 or $accountType == 3) echo ' disabled';?>>
                                         <option value="0">None Selected</option>
                                         <?php
                                             while ($nurse = mysql_fetch_assoc($nurses))

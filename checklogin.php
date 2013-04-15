@@ -29,7 +29,17 @@ if ($count == 1) {
     elseif($usertable == 'Nurses')
     {header("location:accountNurses.php");}
     elseif($usertable == 'Patients')
-    {header("location:accountPatients.php");}
+    {
+        $sql = "SELECT *
+                FROM Patients
+                WHERE idpatient={$_SESSION["userrecord"]["idpatient"]}";
+        $result = mysql_query($sql);
+        $patient = mysql_fetch_assoc($result);
+
+        $_SESSION["patientrecord"] = $patient;
+
+        header("location:accountPatients.php");
+    }
     else
     {header("location:accountAdmins.php");}
 }
