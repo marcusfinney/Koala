@@ -64,3 +64,10 @@ body {
 		opacity: 1;
 	}
 }
+
+.slide{
+display:none;
+}
+#slide-one{
+display:block;
+}

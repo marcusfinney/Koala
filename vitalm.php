@@ -1,6 +1,8 @@
 <?php 
 session_start();
 ob_start(); 
+require_once("conf.php");
+
 
 if (!isset($_SESSION['username']))
 {
@@ -36,6 +38,7 @@ else
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="favicon.ico">
+        <script type="text/javascript" src="expandCollapse.js"></script>
     </head>
 
     <body>
@@ -55,70 +58,26 @@ else
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Prescriptions</a></li>
                 <li class="active"><a href="editInfo.php">Edit Info</a></li>
             </ul>
-
             <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
                 <div class="row">
-                    <div class="span9 offset3">
-                        <!-- <h3><?php echo "{$_SESSION['patientrecord']['lastname']}, {$_SESSION['patientrecord']['firstname']}";?></h3> -->
-                        <form class="form-horizontal" method="post" action="">
-                            <?php
-                                $p = $_SESSION["patientrecord"];
-								$patientID = $_SESSION["patientrecord"]["idpatient"];
-								
-                                include 'config.php';
-                                mysql_connect($host, $user, $password) or die("cant connect");
-                                mysql_select_db($database) or die(mysql_error());
-
-								$sql = "SELECT timeofday, timeanddate, heartrate, bloodsugar, bloodpressure, weight
-        						FROM Vitals
-    							WHERE idpatient={$patientID}";
-    							
-                                $numberofvitals = mysql_query($sql);
-                                
-                                if ($numberofpatients == 0) {
-                                echo '<p>No vitals currently entered.</p>';}
-                              	else
-                              	{
-                              		while($numberofpatients = mysql_fetch_assoc($numberofpatients))
-                              		{echo $numberofpatients['heartrate'];
-                            ?>
+                <div id="para1" style="display:block">
+                	<div class="span5">
+                        <form class="form-horizontal" method="post" action="entervitals.php">
                             <div class="control-group">
                                 <div class="controls">
                                     <h3><?php echo "{$_SESSION['patientrecord']['lastname']}, {$_SESSION['patientrecord']['firstname']}";?></h3>
                                 </div>
                             </div>
-
-							//to select from the table 
-                           <php? /*<div class="control-group">
-                                <label class="control-label" for="idnurse">Assigned Nurse</label>
-                                <div class="controls">
-                                    <select id="idnurse">
-                                        <option>None Selected</option>
-                                        <?php
-                                            while ($nurse = mysql_fetch_assoc($nurses))
-                                            {
-                                                $selected = '';
-                                                if ($nurse['idnurse'] == $p['idnurse']) $selected = ' selected="selected"';
-                                                echo "<option value={$nurse['idnurse']}{$selected}>{$nurse['lastname']}, {$nurse['firstname']}</option>";
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>*/ ?>
-                            <div class="control-group">
-                            	<label class="timeanddate" for="timeanddate">Date</label>
+                          <!--  <div class="control-group">
+                            	<label class="control-label" for="timeanddate">Vitals Audit</label>
                             	<div class="controls">
-                            		<input id="timeanddate" name="timeanddate">
-									<script type="text/javascript">
-									  document.getElementById('timeanddate').value = Date();
-									</script>
+                                    <input type="datetime" id="timeanddate" name="timeanddate" required="required">
 								</div>
-							</div>	
+							</div>	-->
                             <div class="control-group">
                                 <label class="control-label" for="timeofday">Time of Day</label>
                                 <div class="controls">
-									<select name="timeofday">
- 										<option value="">-Select-</option>
+									<select id="timeofday" name="timeofday" required="required">
  										<option value="0">Morning</option>
  										<option value="1">Afternoon</option>
  										<option value="2">Evening</option>
@@ -126,44 +85,29 @@ else
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="heartrate">Heart Rate</label>
+                                <label class="control-label" for="heartrate">Heart Rate(bpm)</label>
                                 <div class="controls">
-                                    <input type="text" id="heartrate" name="heartrate"><php? echo 'bpm';?>
+                                    <input type="number" id="heartrate" name="heartrate" required="required">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="bloodsugar">Blood Sugar</label>
+                                <label class="control-label" for="bloodsugar">Blood Sugar(mg/dl)</label>
                                 <div class="controls">
-                                    <input type="text" id="bloodsugar" name="bloodsugar"><php? echo 'mg/dl';?>
+                                    <input type="number" id="bloodsugar" name="bloodsugar" required="required">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="bloodpressure">Blood Pressure</label>
+                                <label class="control-label" for="bloodpressure">Blood Pressure(mmHg)</label>
                                 <div class="controls">
-                                    <input type="text" id="bloodpressure" name="bloodpressure"><php? echo ' mmHg';?>
+                                    <input type="number" id="bloodpressure" name="bloodpressure" required="required">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="weight">Weight</label>
+                                <label class="control-label" for="weight">Mass(kg)</label>
                                 <div class="controls">
-                                    <input type="text" id="weight" name="weight"><php? echo 'kg';?>
+                                    <input type="number" id="weight" name="weight" required="required">
                                 </div>
-                            </div>
-                            /*<div class="control-group">
-                                <label class="control-label" for="age">Age</label>
-                                <div class="controls">
-                                    <input type="number" min="1" max="150" id="age" name="age" value=<?php echo $p["age"];?> >
-                                    <!--
-                                    <?php 
-                                        echo "<select name='age'>";
-                                        for ($i = 0; $i <= 150; $i++) {
-                                            echo "<option value='$i'>$i</option>";
-                                        }
-                                        echo "</select>"; 
-                                    ?>
-                                    -->
-                                </div>
-                            </div>*/
+                            </div>	
                             <div class="control-group">
                                 <div class="controls">
                                     <?php
@@ -171,39 +115,122 @@ else
                                             echo '<p class="label label-important fadeIn">You must fill out all fields.</p><br>';
                                         }
                                     ?>
-                                    <input class="btn btn-primary" type="submit" value="Save Changes">
+                                    <input class="btn btn-primary" type="submit" value="Enter Vitals">
+                                <!--    <input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="View Vitals"> -->
                                 </div>
                             </div>
-
+                                <div>
+                            		<font color ="blue"><?php echo "{$_SESSION['patientrecord']['iddoctor']} {$_SESSION['patientrecord']['idnurse']} {$_SESSION['patientrecord']['idpatient']}"?></font>
+                            	</div>
                         </form>
-
                     </div>
+                    </div>
+                    <div class="span2">
+                <div id="para2" style="display:block">
+                        <div class="control-group">
+                            <div class="controls">
+                                <h3>Most Recent</h3>
+                            </div>
+                        </div>
+                    <div style="width:300px; height:285px; overflow: auto;">
+						<?php
+                            include 'config.php';
+                            mysql_connect($host, $user, $password) or die("cant connect");
+                            mysql_select_db($database) or die(mysql_error());
 
+                            $doctorID = $_SESSION["userrecord"]["iddoctor"];
+                            $patientID = $_SESSION["patientrecord"]["idpatient"];
+                            $nurseID = $_SESSION["patientrecord"]["idnurse"];
+                            
+                            $sql = "SELECT * 
+									FROM  Vitals
+									WHERE iddoctor={$doctorID}
+									AND  idnurse={$nurseID}
+									AND  idpatient={$patientID}
+									ORDER BY iddoctor={$doctorID} DESC";	
+                            
+                            $myvitals = mysql_query($sql)or die('Invalid query: ' .mysql_error());
+                            
+                            $numberofvitals = mysql_num_rows($myvitals);
+
+                            if ($numberofvitals == 0) 
+                            {
+								echo 'No vitals entered.';
+                            }
+                            else
+                            {
+                            	//set up with arrays so database prints in reverse(most recent)	
+                                $vitalcount = 0;
+                                while ($row = mysql_fetch_assoc($myvitals)) 
+                                {
+                                	$timeanddate = $row['timeanddate'];
+                                	$heartrate = $row["heartrate"];
+                                	$bloodsugar = $row['bloodsugar'];
+                                	$bloodpressure = $row['bloodpressure'];
+                                	if($row['timeofday'] == 0){$timeofday = "Morning";}
+                                	if($row['timeofday'] == 1){$timeofday = "Afternoon";}
+                                	if($row['timeofday'] == 2){$timeofday = "Evening";}
+                                	
+									$vitalreport[$vitalcount] = $timeanddate."<br>"
+ 							      			."{$_SESSION['patientrecord']['firstname']}"
+ 							        		." "
+ 							        		."{$_SESSION['patientrecord']['lastname']}"."<br>"
+   											. '<i>'.$timeofday.'</i>' . "<br>"
+   											."<br>".'heart rate: ' . '<font color ="red">'.$heartrate.'</font>' . "<br>"
+ 							        		.'bloodsugar: ' . '<font color ="blue">'.$bloodsugar.'</font>' . "<br>"
+   											.'bloodpressure: ' . '<font color ="green">'.$bloodpressure.'</font>' . "<br>"  
+											."----------------------------------------------------" . "<br>";
+									$vitalcount++;
+ 							    } 
+ 							    $i=$vitalcount-1;	
+ 							    
+ 							    while($i>=0)
+ 							    {
+ 							    	print $vitalreport[$i];
+ 							    	$i--;
+ 							    }
+ 							}
+                        ?> 
+                    </div>
+                    <!-- <input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="Enter Vitals"> -->
+                    </div>
+                    </div>
+                    </div>
+                    <div>
+                    	<div class="span10">
+                    		<br>
+                    		<?php
+								$pc = new C_PhpChartX(array(array(1, 2, 3)),'Vitals');
+								$pc->set_title(array('text'=>'Vitals'));
+								$pc->set_animate(true);	
+								$pc->add_plugins(array('trendline'));
+								$pc->draw();
+							?>
+                    	</div>
+                    </div>
                 </div>
-
             </div>
         </div>
-
+        <?php
+            if (isset($_GET))
+            {
+                if (isset($_GET["status"]) and $_GET["status"] == "success")
+                {
+                    echo '<script>alert("Vitals successfully updated.")</script>';
+                }
+                if (isset($_GET["error"]) and $_GET["error"] == "unauthorized")
+                {
+                    echo '<script>alert("You are not authorized to view that page.")</script>';
+                }
+                if (isset($_GET["error"]) and $_GET["error"] == "error")
+                {
+                    echo '<script>alert("Unable to update vitals information.")</script>';
+                }
+                if (isset($_GET["error"]) and $_GET["error"] == "idsnotworking")
+                {
+                    echo '<script>alert("Not recognizing ID tags.")</script>';
+                }
+            }
+        ?>
     </body>
-</html>
-
-
-
-<?php
-session_start();
-include 'config.php';
-
-mysql_connect($host, $user, $password) or die("cant connect");
-mysql_select_db($database) or die(mysql_error());
-
-$patientID = $_SESSION["patientrecord"]["idpatient"];
-$location = 'Vitals';
-$sql = "INSERT INTO {$location} (iddoctor, username, password, email, firstname, lastname, age, gender, association) VALUES ('$myiddoctor','$myusername','$mypassword','$myemail','$myfirstname','$mylastname','$myage','$mygender', '$myassociation')";
-$result = mysql_query($sql);
-		
-if ($result) 
-{
-	echo "<script>alert('Vitals entered successfully');</script>";
-	echo '<META HTTP-EQUIV="Refresh" Content="0; URL=vitalsm.php">';    
-}
-?>                          
+</html> 

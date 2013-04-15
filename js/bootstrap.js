@@ -2271,6 +2271,19 @@
       $spy.affix(data)
     })
   })
+  
+  $(function()
+{
+  $('#toggle-trigger').click(function()
+  {
+    var $Current = $('.slide:visible');
+    var $Slides = $('.slide');
+    var $Next = $Current.next();
+    if ($Next.length == 0) $Next = $Slides.first();
+    $Slides.hide();
+    $Next.show();
+  });
+});
 
 
 }(window.jQuery);

@@ -1,18 +1,59 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['username']))
+{
+    header("Location: index.php?error=unauthorized");
+    die();
+}
+else
+{
+    $accountType = $_SESSION["userrecord"]["association"];
+    if ($accountType == 1 and !$_POST)
+    {
+        header("Location: accountDoctors.php?error=unauthorized");
+        die();
+    }
+    if ($accountType == 2)
+    {
+        header("Location: accountNurses.php?error=unauthorized");
+        die();
+    }
+    if ($accountType == 3)
+    {
+        header("Location: accountPatients.php?error=unauthorized");
+        die();
+    }
+}
+
+$iddoctor = $_SESSION["patientrecord"]["iddoctor"];
+$idnurse = $_SESSION["patientrecord"]["idnurse"];
+$idpatient = $_SESSION["patientrecord"]["idpatient"];
+$timeofday = $_POST["timeofday"];
+//$timeanddate = $_POST["timeanddate"];
+$heartrate = $_POST["heartrate"];
+$bloodsugar = $_POST["bloodsugar"];
+$bloodpressure = $_POST["bloodpressure"];
+$weight = $_POST["weight"];
+
 include 'config.php';
 
 mysql_connect($host, $user, $password) or die("cant connect");
 mysql_select_db($database) or die(mysql_error());
 
-$patientID = $_SESSION["patientrecord"]["idpatient"];
-$location = 'Vitals';
-$sql = "INSERT INTO {$location} (iddoctor, username, password, email, firstname, lastname, age, gender, association) VALUES ('$myiddoctor','$myusername','$mypassword','$myemail','$myfirstname','$mylastname','$myage','$mygender', '$myassociation')";
-$result = mysql_query($sql);
-		
-if ($result) 
+if (!$iddoctor or !$idnurse or !$idpatient or !$timeofday
+    or !$heartrate or !$bloodsugar or !$bloodpressure or !$weight)
 {
-	echo "<script>alert('Vitals entered successfully');</script>";
-	echo '<META HTTP-EQUIV="Refresh" Content="0; URL=vitalsm.php">';    
+    header("location: vitalm.php?error=incompleteform");
 }
+        
+$sql = "INSERT INTO Vitals (iddoctor, idnurse, idpatient, timeofday, heartrate, bloodsugar, bloodpressure, weight)
+        VALUES ($iddoctor, $idnurse, $idpatient, $timeofday, '$heartrate', '$bloodsugar', '$bloodpressure', '$weight')";
+
+$newvital = mysql_query($sql);
+		
+if ($newvital)
+{header('location: vitalm.php?status=success');}
+else
+{header('location: vitalm.php?error=error');}
 ?>                       
