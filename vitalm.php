@@ -56,11 +56,11 @@ else
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Notes</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Messages</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Prescriptions</a></li>
-                <li class="active"><a href="editInfo.php">Edit Info</a></li>
+                <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
-            <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
+            <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent vitals">
                 <div class="row">
-                <div id="para1" style="display:block">
+                <div id="para1" style="display:none">
                 	<div class="span5">
                         <form class="form-horizontal" method="post" action="entervitals.php">
                             <div class="control-group">
@@ -116,7 +116,8 @@ else
                                         }
                                     ?>
                                     <input class="btn btn-primary" type="submit" value="Enter Vitals">
-                                <!--    <input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="View Vitals"> -->
+                                
+                                <input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="View Vitals">
                                 </div>
                             </div>
                                 <div>
@@ -125,14 +126,14 @@ else
                         </form>
                     </div>
                     </div>
-                    <div class="span2">
+                    <div class="span2 offset2">
                 <div id="para2" style="display:block">
                         <div class="control-group">
                             <div class="controls">
                                 <h3>Most Recent</h3>
                             </div>
                         </div>
-                    <div style="width:300px; height:285px; overflow: auto;">
+                    <div style="width:300px; height:250px; overflow: auto;">
 						<?php
                             include 'config.php';
                             mysql_connect($host, $user, $password) or die("cant connect");
@@ -194,7 +195,10 @@ else
  							}
                         ?> 
                     </div>
-                    <!-- <input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="Enter Vitals"> -->
+                    <div>
+                   		<input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="Enter Vitals">
+                    </div><br>
+<br>
                     </div>
                     </div>
                     </div>
