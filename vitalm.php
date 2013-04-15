@@ -177,10 +177,10 @@ else
  							        		." "
  							        		."{$_SESSION['patientrecord']['lastname']}"."<br>"
    											. '<i>'.$timeofday.'</i>' . "<br>"
-   											."<br>".'Heart Rate: ' . '<font color ="red">'.$heartrate.'</font>' . "<br>"
- 							        		.'Blood Sugar: ' . '<font color ="blue">'.$bloodsugar.'</font>' . "<br>"
-   											.'Blood Pressure: ' . '<font color ="green">'.$bloodpressure.'</font>' . "<br>"
-   											.'Mass: ' . '<font color ="orange">'.$weight.'</font>'. "<br>"
+   											."<br>".'Heart Rate: ' . '<font color ="red">'.$heartrate.'</font>' . " bpm" . "<br>"
+ 							        		.'Blood Sugar: ' . '<font color ="blue">'.$bloodsugar.'</font>' . " mg/dl" ."<br>"
+   											.'Blood Pressure: ' . '<font color ="green">'.$bloodpressure.'</font>' . " mmHg" . "<br>"
+   											.'Mass: ' . '<font color ="orange">'.$weight.'</font>'. " kg" ."<br>"
 											."----------------------------------------------------" . "<br>";
 									$vitalcount++;
  							    } 
