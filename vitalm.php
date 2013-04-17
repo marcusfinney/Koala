@@ -60,8 +60,13 @@ else
             </ul>
             <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent vitals">
                 <div class="row">
+                <div class="span5 offset1 btn-group"><br>
+				  	<button onclick="return toggle('para1')" class="btn btn-primary">Enter Vitals</button>
+				  	<button onclick="return toggle('para2')" class="btn btn-secondary">Vitals Feed</button>
+				</div>
+				<div class="row">
+				<div class="span5 offset1">
                 <div id="para1" style="display:none">
-                	<div class="span5">
                         <form class="form-horizontal" method="post" action="entervitals.php">
                             <div class="control-group">
                                 <div class="controls">
@@ -117,16 +122,15 @@ else
                                     ?>
                                     <input class="btn btn-primary" type="submit" value="Enter Vitals">
                                 
-                                <input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="View Vitals">
+                               <!-- <input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="View Vitals"> -->
                                 </div>
                             </div>
-                                <div>
+                                <!-- <div>
                             		<font color ="blue"><?php echo "{$_SESSION['patientrecord']['iddoctor']} {$_SESSION['patientrecord']['idnurse']} {$_SESSION['patientrecord']['idpatient']}"?></font>
-                            	</div>
+                            	</div> -->
                         </form>
                     </div>
-                    </div>
-                    <div class="span2 offset2">
+                    <div>
                 <div id="para2" style="display:block">
                         <div class="control-group">
                             <div class="controls">
@@ -195,27 +199,28 @@ else
  							}
                         ?> 
                     </div>
+                    <div><br>
+                   		<!--	<input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="Enter Vitals"> -->
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
                     <div>
-                   		<input type="button" class="btn btn-secondary" onclick="return toggle('para1')" value="Enter Vitals">
-                    </div><br>
-<br>
-                    </div>
-                    </div>
-                    </div>
-                    <div>
-                    	<div class="span10">
+                    	<!--<div class="span10">
                     		<br>
-                    		<?php
+                    		<?php /*
 								$pc = new C_PhpChartX(array(array(1, 2, 3)),'Vitals');
 								$pc->set_title(array('text'=>'Vitals'));
 								$pc->set_animate(true);	
 								$pc->add_plugins(array('trendline'));
-								$pc->draw();
+								$pc->draw(); */
 							?>
-                    	</div>
+                    	</div> -->
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <?php
             if (isset($_GET))
