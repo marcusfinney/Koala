@@ -56,6 +56,18 @@
                 </div>
 
             </form>
+
+            <!-- <table class="table table-striped">
+                <tr class="success">
+                    <td>slfj</td>
+                    <td>sldjf</td>
+                </tr>
+                <tr class="error">
+                    <td>lsdjflsdjfldsjf</td>
+                    <td>example stuff</td>
+                </tr>
+            </table> -->
+            
         </div>
 
         <?php
