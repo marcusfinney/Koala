@@ -10,7 +10,7 @@
 
     <body>
         <div class="container login-content">
-            <h1>Sign-in to Well-Check Clinic</h1>
+            <h1>Well-Check Clinic Login</h1>
             <br>
 
             <form class="form-horizontal" method="post" action="checklogin.php">

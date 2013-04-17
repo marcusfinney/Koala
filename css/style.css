@@ -9,6 +9,11 @@ body {
 	width: 560px;
 }
 
+.label {
+	min-height: 0px;
+	padding-top: 4px;
+	padding-bottom: 6px;
+}
 
 /* accountDoctors.php */
 .clear {
@@ -65,13 +70,13 @@ body {
 	}
 }
 
-.slide{
+.slide {
 display:none;
 }
-#slide-one{
+#slide-one {
 display:block;
 }
 
 .vitals {
 	height: 500px;
-	}s
+}
