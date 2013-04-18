@@ -50,7 +50,7 @@ else
                 <li><a href="accountPatients.php">Notes</a></li>
                 <li><a href="accountPatients.php">Messages</a></li>
                 <li><a href="accountPatients.php">Prescriptions</a></li>
-                <li><a href="editInfo.php">Update Info</a></li>
+                <li><a href="updateInfo.php">Update Info</a></li>
             </ul>
 
             <div class="fadeIn tabcontent">
