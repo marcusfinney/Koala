@@ -40,6 +40,6 @@ $patient = mysql_fetch_assoc($result);
 
 $_SESSION["patientrecord"] = $patient;
 
-header("location: editInfo.php");
+header("location: account<?php echo $_SESSION['accountType'];?>.php.php");
 
 ?>
