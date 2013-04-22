@@ -179,6 +179,17 @@ $jsonTable = json_encode($table);
  							    				$i--;
  							    				}
  											}
+ 											$j = $m;
+     					 		  	if($j>2){
+   									$l1 = array($Gheartrate[$j-3], $Gheartrate[$j-2], $Gheartrate[$j-1], $Gheartrate[$j]);
+    								$l2 = array($Gbloodsugar[$j-3], $Gbloodsugar[$j-2], $Gbloodsugar[$j-1], $Gbloodsugar[$j]);
+    								$l3 = array($Gbloodpressure[$j-3], $Gbloodpressure[$j-2], $Gbloodpressure[$j-1], $Gbloodpressure[$j]);
+    								$l4 = array($Gweight[$j-3], $Gweight[$j-2], $Gweight[$j-1], $Gweight[$j]);}
+    								else{
+    								$l1 = array(0);
+    								$l2 = array(0);
+    								$l3 = array(0);
+    								$l4 = array(0);}
                         				?> 
      					 				<tr></tr>
 									</table>
@@ -188,7 +199,7 @@ $jsonTable = json_encode($table);
      					 		<div class="span12"><br>
      					 			<form class="form-horizontal" method="post" action="entervitals.php">
                    				     	<div class="control-group text-center">
-     					 					<?php echo "<h3 class=''> {$_SESSION["patientrecord"]["firstname"]} {$_SESSION["patientrecord"]["lastname"]}</h3>"; ?>
+     					 					<?php echo "<h3 class=''> {$_SESSION["patientrecord"]["firstname"]}, {$_SESSION["patientrecord"]["lastname"]}</h3>"; ?>
      					 				</div>
                    				     	<div class="control-group">
                                				<label class="control-label" for="timeofday">Time of Day</label>
@@ -259,19 +270,6 @@ $jsonTable = json_encode($table);
   					  		<div class="row offset1">
      					 		<div class="span12"><br><br>
      					 		  <?php
-									$j = $m;     					 		  	
-									if($j>2){
-   									$l1 = array($Gheartrate[$j-3], $Gheartrate[$j-2], $Gheartrate[$j-1], $Gheartrate[$j]);
-    								$l2 = array($Gbloodsugar[$j-3], $Gbloodsugar[$j-2], $Gbloodsugar[$j-1], $Gbloodsugar[$j]);
-    								$l3 = array($Gbloodpressure[$j-3], $Gbloodpressure[$j-2], $Gbloodpressure[$j-1], $Gbloodpressure[$j]);
-    								$l4 = array($Gweight[$j-3], $Gweight[$j-2], $Gweight[$j-1], $Gweight[$j]);}
-    								else{
-    								$l1 = array(0);
-    								$l2 = array(0);
-    								$l3 = array(0);
-    								$l4 = array(0);}
-						
-
 									$pc = new C_PhpChartX(array($l1,$l2,$l3,$l4),'Vitals');
 
     								$pc->jqplot_show_plugins(true);
