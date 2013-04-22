@@ -7,6 +7,6 @@ define('DEBUG', false);
 
 
 /******** DO NOT MODIFY ***********/
-//require_once('phpChart.php');     
+require_once('phpChart.php');     
 /**********************************/
 ?>
