@@ -36,6 +36,16 @@ mysql_select_db($database) or die(mysql_error());
 //this example will display a pie chart.if u need other charts such as Bar chart, u will need to change little bit to make work with bar chart and others charts
 $vit = mysql_query("SELECT * FROM Vitals");
 
+/*
+---------------------------
+example data: Table (Chart)
+--------------------------
+Weekly_Task     percentage
+Sleep           30
+Watching Movie  40
+work            44
+*/
+
 $rows = array();
 //flag is not needed
 $flag = true;
@@ -110,11 +120,11 @@ $jsonTable = json_encode($table);
      					 	</div>
      					 	<div class="row-fluid">
      					 		<div class="span12 offset4">
-				  				<button onclick="return toggle('para1')" class="btn btn-primary">Input Vitals</button>
+				  				<button onclick="return toggle('para1')" class="btn btn-primary">Enter Vitals</button>
 				  				<button onclick="return toggle('para2')" class="btn btn-secondary">Vitals Feed</button>     					 		</div>
-     					 	</div>
+     					 	</div><br>
      					 	<div class="row-fluid" id="para1" style="display:none; width:500px; height:400px; overflow: auto;">
-     					 		<br><div class="span12">
+     					 		<div class="span12">
      					 			<table class="table table-striped">
      					 				<?php
                             				include 'config.php';
@@ -187,9 +197,6 @@ $jsonTable = json_encode($table);
      					 	<div class="row-fluid" id="para2" style="display:block">
      					 		<div class="span12"><br>
      					 			<form class="form-horizontal" method="post" action="entervitals.php">
-                   				     	<div class="control-group text-center">
-     					 					<?php echo "<h3 class=''> {$_SESSION["patientrecord"]["firstname"]} {$_SESSION["patientrecord"]["lastname"]}</h3>"; ?>
-     					 				</div>
                    				     	<div class="control-group">
                                				<label class="control-label" for="timeofday">Time of Day</label>
                                				<div class="controls">
@@ -226,12 +233,11 @@ $jsonTable = json_encode($table);
                             			</div>	
                             			<div class="control-group">
                                				 <div class="controls">
-    										<?php
-                          					if ($_GET and $_GET["status"] == "success") {
-                          					 $feed = $j-1;
-                               				 echo '<p class="label label-inverse fadeIn">Vitals Successfully entered ('.$feed.')</p><br>';
-                            				}
-                        					?>
+                                    		 <?php
+                                        			if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "incompleteform") {
+                                           			echo '<p class="label label-important fadeIn">You must fill out all fields.</p><br>';
+                                        			}
+                                    		?>
                                     		<input class="btn btn-primary" type="submit" value="Enter Vitals">
                                 			</div>
                            				</div>
@@ -239,37 +245,15 @@ $jsonTable = json_encode($table);
      					 		</div>
      					 	</div>
   					  	</div>
-  					  	<div><br>
-  					  		<!--<div class="progress progress-striped active"> Sufficient Number of Vitals Entered?
-  					  				<?php 	if($vitalcount = 0)
-  											{echo '<div class="bar" style="width: 0%;"></div>';}
-  										  	elseif($vitalcount = 1)
-  											{echo '<div class="bar" style="width: 20%;"></div>';}
-  										  	elseif($vitalcount = 2)
-  											{echo '<div class="bar" style="width: 40%;"></div>';}
-  											elseif($vitalcount = 3)
-  											{echo '<div class="bar" style="width: 60%;"></div>';}
-  											elseif($vitalcount = 4)
-  											{echo '<div class="bar" style="width: 80%;"></div>';}
-  											else
-  											{echo '<div class="bar" style="width: 1000%;"></div>';} ?> 										
-							</div>-->
-  					  	</div>
   					  	<div class="span5">
   					  		<div class="row offset1">
      					 		<div class="span12"><br><br>
      					 		  <?php
-     					 		  	if($j>4){
    									$l1 = array($Gheartrate[$j-3], $Gheartrate[$j-2], $Gheartrate[$j-1], $Gheartrate[$j]);
     								$l2 = array($Gbloodsugar[$j-3], $Gbloodsugar[$j-2], $Gbloodsugar[$j-1], $Gbloodsugar[$j]);
     								$l3 = array($Gbloodpressure[$j-3], $Gbloodpressure[$j-2], $Gbloodpressure[$j-1], $Gbloodpressure[$j]);
-    								$l4 = array($Gweight[$j-3], $Gweight[$j-2], $Gweight[$j-1], $Gweight[$j]);}
-    								else{
-    								$l1 = array(0);
-    								$l2 = array(0);
-    								$l3 = array(0);
-    								$l4 = array(0);}
-						
+    								$l4 = array($Gweight[$j-3], $Gweight[$j-2], $Gweight[$j-1], $Gweight[$j]);
+
 
 									$pc = new C_PhpChartX(array($l1,$l2,$l3,$l4),'Vitals');
 
@@ -277,21 +261,13 @@ $jsonTable = json_encode($table);
     								$pc->set_legend(array('show'=>true));
     								$pc->set_animate(true);
 
-    								$pc->add_series(array('label'=>'Heart Rate'),array('showLabel'=>true));
-    								$pc->add_series(array('label'=>'Blood Sugarr'),array('showLabel'=>true));
-    								$pc->add_series(array('label'=>'Blood Pressure'),array('showLabel'=>true));
-    								$pc->add_series(array('label'=>'Weight'),array('showLabel'=>true));
+    								$pc->add_series(array('showLabel'=>true));
+    								$pc->add_series(array('showLabel'=>true));
+    								$pc->add_series(array('showLabel'=>true));
+    								$pc->add_series(array('showLabel'=>true));
     
     								$pc->set_title(array('text'=>'Vitals'));
-									$pc->set_axes(array(
-      								  'xaxis'=> array(	'min' => 	1,
-      								  					'max' => 4,
-      								  					'label'=> 'Most Recently Entered(At least 4)'),
-      								  'yaxis'=> array(	'min' => 0,
-      								  					'max' => 200,
-      								  					'label'=>''	)
- 									   ));
-									$pc->set_series_color(array('#cc6666', '#66cc66', '#6666cc','#FFDE00'));
+									
    									$pc->draw(600,400);   
     								?>
      					 		</div>
@@ -304,6 +280,10 @@ $jsonTable = json_encode($table);
             <?php
             if (isset($_GET))
             {
+                if (isset($_GET["status"]) and $_GET["status"] == "success")
+                {
+                    echo '<script>alert("Vitals successfully updated.")</script>';
+                }
                 if (isset($_GET["error"]) and $_GET["error"] == "unauthorized")
                 {
                     echo '<script>alert("You are not authorized to view that page.")</script>';
