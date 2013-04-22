@@ -172,7 +172,7 @@ $jsonTable = json_encode($table);
 											$vitalcount++;
  							    			} 
  							    			$i=$vitalcount-1;	
- 							    			$j=$vitalcount-1;
+ 							    			$m=$vitalcount-1;
  							    			while($i>=0)
  							    				{
  							   					print $vitalreport[$i];
@@ -228,7 +228,7 @@ $jsonTable = json_encode($table);
                                				 <div class="controls">
     										<?php
                           					if ($_GET and $_GET["status"] == "success") {
-                          					 $feed = $j-1;
+                          					 $feed = $m+1;
                                				 echo '<p class="label label-inverse fadeIn">Vitals Successfully entered ('.$feed.')</p><br>';
                             				}
                         					?>
@@ -259,7 +259,8 @@ $jsonTable = json_encode($table);
   					  		<div class="row offset1">
      					 		<div class="span12"><br><br>
      					 		  <?php
-     					 		  	if($j>4){
+									$j = $m;     					 		  	
+									if($j>2){
    									$l1 = array($Gheartrate[$j-3], $Gheartrate[$j-2], $Gheartrate[$j-1], $Gheartrate[$j]);
     								$l2 = array($Gbloodsugar[$j-3], $Gbloodsugar[$j-2], $Gbloodsugar[$j-1], $Gbloodsugar[$j]);
     								$l3 = array($Gbloodpressure[$j-3], $Gbloodpressure[$j-2], $Gbloodpressure[$j-1], $Gbloodpressure[$j]);
