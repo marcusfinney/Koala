@@ -55,7 +55,7 @@ else
 
             <ul class="clear nav nav-tabs">
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Select Patient</a></li>
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Vitals</a></li>
+                <li><a href="vitalm.php">Vitals</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Notes</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Messages</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Prescriptions</a></li>
