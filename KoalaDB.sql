@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `Admins` (
 --
 
 INSERT INTO `Admins` (`idadmins`, `firstname`, `lastname`, `email`, `tele`, `address`, `age`, `username`, `password`, `gender`, `association`) VALUES
-(1, 'John', 'Smith', 'jsmith@gmail.com', '4803953360', '1616 E La Jolla', 30, 'admin', '44', 'male', 4);
+(1, 'John', 'Smith', 'jsmith@gmail.com', '4803953360', '1616 E La Jolla', 30, 'admin', '44', 'male', 0);
 
 -- --------------------------------------------------------
 

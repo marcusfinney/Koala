@@ -41,7 +41,7 @@ else
     <body>
         <div class="container">
             <?php
-                echo "<h1 class='pull-left'>Dr. {$_SESSION["userrecord"]["firstname"]} {$_SESSION["userrecord"]["lastname"]}</h1>";
+                echo "<h1 class='pull-left'> Administrator </h1>";
             ?>
             <a href="logout.php"><h1 class="pull-right btn btn-inverse">Sign Out</h1></a>
 
@@ -50,6 +50,77 @@ else
                 planning on making each page have the same 'top' section, just different content
             -->
 
+            
+            <ul class="clear nav nav-tabs">
+                <li class="active"><a href="accountAdmins.php">Manage Doctor accounts</a></li>
+                <!--<li><a href="accountAdmins.php">Add Nurse account</a></li>-->
+
+            </ul>
+            
+            
+                     <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
+                <div class="row">
+                    <div class="span6">
+                        <!-- <h4>Select a Patient</h4> -->
+                        <?php
+                            include 'config.php';
+                            mysql_connect($host, $user, $password) or die("cant connect");
+                            mysql_select_db($database) or die(mysql_error());
+
+                            $myID = $_SESSION["userrecord"];
+
+                            $sql = "SELECT firstname, lastname
+                                    FROM Doctors ";
+                            $mydoctors = mysql_query($sql);
+                            
+                            $numberofdoctors = mysql_num_rows($mydoctors);
+
+                            if ($numberofdoctors == 0) {
+                                echo '<p>You have no registered doctors.</p>';
+                            }
+                            else {
+                                // ADD THE PAGE FOR VIEWING PATIENT DATA IN THE ACTION FIELD OF NEXT LINE
+
+                                // Non-bootstrapped version
+                                // echo '  <form>
+                                //             <select name="Patients">';
+                                // while ($row = mysql_fetch_assoc($mypatients)) {
+                                //     echo  "     <option value={$row['idpatient']}>{$row['lastname']}, {$row['firstname']}</option>";
+                                // }
+                                // echo '      </select>
+                                //             <br>
+                                //             <input class="btn btn-primary" type="submit" value="Select Patient">
+                                //         </form>';
+
+                                // Bootstrapped version
+                                echo '  <form class="form-horizontal" method="post" action="selectDoctor.php">
+
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <h3>Select A Doctor</h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <select name="Doctor">';
+                                while ($row = mysql_fetch_assoc($mydoctors)) {
+                                    echo  "             <option value={$row['iddoctor']}>{$row['lastname']}, {$row['firstname']}</option>";
+                                }
+                                echo '              </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <input class="btn btn-primary" type="submit" value="Select Doctor">
+                                                </div>
+                                            </div>
+
+                                        </form>';
+                            }
+                        ?>
+                    </div>
 
                     <div class="span5">
                         <!-- <h4>Register a Patient</h4> -->
