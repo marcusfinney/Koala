@@ -12,7 +12,7 @@ else
     $accountType = $_SESSION["userrecord"]["association"];
     if ($accountType != 0 )
     {
-        header("Location: accountAdmin.php?error=noneselected");
+        header("Location: accountAdmins.php?error=noneselected");
         die();
     }
 
@@ -54,6 +54,15 @@ else
 
             </ul>
             
+              <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
+                <div class="row">
+
+                    <div class="span9 offset3">
+                        <!-- <h3><?php echo "{$_SESSION['doctorrecord']['lastname']}, {$_SESSION['doctorrecord']['firstname']}";?></h3> -->
+
+                        <form class="form-horizontal" method="post" action="editDoctorController.php">
+
+                            <!-- UPDATE  `Koala`.`Patients` SET  `email` =  'jose@email.com' WHERE  `Patients`.`idpatient` =14; -->
             
                              <?php
                                 $p = $_SESSION["doctorrecord"];
@@ -67,8 +76,6 @@ else
             
                     <div class="span5">
                     
-                        <!-- <h4>Register a Patient</h4> -->
-                        <form class="form-horizontal" method="post" action="createDocnNurse.php">
 
                             <div class="control-group">
                                 <div class="controls">
@@ -79,7 +86,7 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="firstname">First Name</label>
                                 <div class="controls">
-                                    <input type="text" id="firstname" name="firstname" value=<?php echo $p["firstname"];?> require="required" autofocus>
+                                    <input type="text" id="firstname" name="firstname" value=<?php echo $p["firstname"];?> required="required" autofocus>
                                 </div>
                             </div>
 
@@ -120,7 +127,6 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="address">Address</label>
                                 <div class="controls">
-                                   <!-- <input type="text" id="address" name="address" value=<?php echo $p["address"];?> required="required"> -->
                                     <textarea id="address" name="address"><?php echo $p["address"];?></textarea>
 
                                 </div>
@@ -148,7 +154,7 @@ else
                                             echo '<p class="label label-warning fadeIn">That username is taken.</p><br>';
                                         }
                                     ?>
-                                    <input type="text" id="username" name="username" value=<?php echo $p["username"];?> required="required">
+                                    <input type="text" id="username" name="username" value=<?php echo $p["username"];?> disabled>
                                 </div>
                             </div>
 
@@ -172,21 +178,6 @@ else
                             </div>
 
                                
-                                <div class="control-group">
-                                
-                                  <div class="controls">
-                                        <?php
-                                           $username = $p["username"];
-                                           $deleted = mysql_query("Delete from Doctors where username={$username}");
-                                           if ($deleted != NULL){
-                                            
-                                           } 
-                                        ?>
-                                        <input class="btn btn-primary" type="submit" value="Delete doctor account">
-                                    </div>
-                                </div>
-                                
-                                
                                 
                                <div class="control-group">
 
@@ -198,14 +189,23 @@ else
                                         ?>
                                         <input class="btn btn-primary" type="submit" value="Edit Doctor information">
                                     </div>
-                                    
 
-                                </div>
 
                         </form>
                     </div>
+                    
+                    </div>
+                    
+                    
+                    <form class="form-horizontal" method="post" action="accountAdmins.php">
+                                                      <div class="controls">
 
-            
+                                        <input class="btn btn-primary" type="submit" value="Delete doctor account">
+                                    </div>
+                                </div>
+                         </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>

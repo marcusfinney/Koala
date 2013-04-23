@@ -26,7 +26,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `Admins` (
-  `idadmins` int(11) NOT NULL,
+  `idadmins` int(11) NOT NULL AUTO_INCREAMENT,
   `firstname` varchar(20) NOT NULL,
   `lastname` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,

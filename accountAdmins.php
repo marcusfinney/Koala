@@ -69,7 +69,7 @@ else
 
                             $myID = $_SESSION["userrecord"];
 
-                            $sql = "SELECT firstname, lastname
+                            $sql = "SELECT iddoctor, firstname, lastname
                                     FROM Doctors ";
                             $mydoctors = mysql_query($sql);
                             
@@ -248,7 +248,7 @@ else
             {
                 if (isset($_GET["status"]) and $_GET["status"] == "success")
                 {
-                    echo '<script>alert("Doctor successfully registered.")</script>';
+                    echo '<script>alert("Doctor successfully updated.")</script>';
                 }
                 if (isset($_GET["error"]) and $_GET["error"] == "unauthorized")
                 {
