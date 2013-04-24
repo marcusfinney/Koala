@@ -47,9 +47,8 @@ else
 
             <ul class="clear nav nav-tabs">
                 <li class="active"><a href="accountPatients.php">Vitals</a></li>
-                <li><a href="accountPatients.php">Notes</a></li>
+                <!-- <li><a href="accountPatients.php">Notes</a></li> -->
                 <li><a href="accountPatients.php">Messages</a></li>
-                <li><a href="accountPatients.php">Prescriptions</a></li>
                 <li><a href="updateInfo.php">Update Info</a></li>
             </ul>
 
@@ -68,5 +67,15 @@ else
 
             </div>
         </div>
+
+        <?php
+            if (isset($_GET))
+            {
+                if (isset($_GET["error"]) and $_GET["error"] == "unauthorized")
+                {
+                    echo '<script>alert("You are not authorized to view that page.")</script>';
+                }
+            }
+        ?>
     </body>
 </html>

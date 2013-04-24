@@ -52,9 +52,8 @@ else
 
             <ul class="clear nav nav-tabs">
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Vitals</a></li>
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Notes</a></li>
+                <!-- <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Notes</a></li> -->
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Messages</a></li>
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Prescriptions</a></li>
                 <li class="active"><a href="updateInfo.php">Update Info</a></li>
             </ul>
 
@@ -64,7 +63,7 @@ else
                     <div class="span9 offset3">
                         <!-- <h3><?php echo "{$_SESSION['patientrecord']['lastname']}, {$_SESSION['patientrecord']['firstname']}";?></h3> -->
 
-                        <form class="form-horizontal" method="post" action="">
+                        <form class="form-horizontal" method="post" action="updateInfoController.php">
 
                             <!-- UPDATE  `Koala`.`Patients` SET  `email` =  'jose@email.com' WHERE  `Patients`.`idpatient` =14; -->
 
@@ -188,6 +187,14 @@ else
                             <div class="control-group">
                                 <div class="controls">
                                     <h3>Change Password</h3>
+                                    <?php
+                                        if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "incorrectpassword") {
+                                            echo '<p class="label label-important fadeIn">Incorrect password.</p><br>';
+                                        }
+                                        if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "passwordmismatch") {
+                                            echo '<p class="label label-important fadeIn">Passwords do not match.</p><br>';
+                                        }
+                                    ?>
                                 </div>
                             </div>
 
@@ -231,6 +238,16 @@ else
 
             </div>
         </div>
+
+        <!--<?php
+            if (isset($_GET))
+            {
+                if (isset($_GET["status"]) and $_GET["status"] == "success")
+                {
+                    echo '<script>alert("Account Infomation Successfully Updated")</script>';
+                }
+            }
+        ?> -->
 
     </body>
 </html>
