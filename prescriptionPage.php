@@ -119,33 +119,26 @@ else
                         ?>
                     </div>
                     <div class="span5">
-                        <!-- <h4>Register a Patient</h4> -->
+                        <!-- <h4>Create A Prescription</h4> -->
                         <form class="form-horizontal" method="post" action="createPatient.php">
 
                             <div class="control-group">
                                 <div class="controls">
-                                    <h3>Register A Patient</h3>
+                                    <h3>Create A Prescription</h3>
                                 </div>
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="firstname">First Name</label>
+                                <label class="control-label" for="presName">Prescription Name</label>
                                 <div class="controls">
                                     <input type="text" id="firstname" name="firstname" required="required" autofocus>
                                 </div>
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="lastname">Last Name</label>
+                                <label class="control-label" for="age">Quantity</label>
                                 <div class="controls">
-                                    <input type="text" id="lastname" name="lastname" required="required">
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <label class="control-label" for="age">Age</label>
-                                <div class="controls">
-                                    <input type="number" min="1" max="150" id="age" name="age" required="required">
+                                    <input type="number" min="1" max="999" id="age" name="age" required="required">
                                     <!--
                                     <?php 
                                         echo "<select name='age'>";
@@ -159,60 +152,25 @@ else
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="gender">Gender</label>
+                                <label class="control-label" for="presQuantity">Refill Date</label>
+                                <div class="controls">
+                                    <input type="text" id="lastname" name="lastname" required="required">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="presApp">Application Instrution</label>
                                 <div class="controls">
                                     <select id="gender" name="gender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
+                                        <option value="0">Select Application method</option>
+                                        <option value="1">Once a day</option>
+                                        <option value="2">After every meal</option>
+                                        <option value="3">Before sleep</option>
+                                        <option value="4">As needed</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="control-group">
-                                <label class="control-label" for="email">Email</label>
-                                <div class="controls">
-                                    <input type="email" id="email" name="email" required="required">
-                                </div>
-                            </div>
-
-                            <!-- <div class="control-group">
-                                <label class="control-label" for="confirmemail">Confirm Email</label>
-                                <div class="controls">
-                                    <input type="email" id="confirmemail" name="confirmemail">
-                                </div>
-                            </div> -->
-
-                            <div class="control-group">
-                                <label class="control-label" for="username">Username</label>
-                                <div class="controls">
-                                    <?php
-                                        if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "usernametaken") {
-                                            echo '<p class="label label-warning fadeIn">That username is taken.</p><br>';
-                                        }
-                                    ?>
-                                    <input type="text" id="username" name="username" required="required">
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <label class="control-label" for="password">Password</label>
-                                <div class="controls">
-                                    <?php
-                                        if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "passwordmismatch") {
-                                            echo '<p class="label label-important fadeIn">Passwords do not match.</p><br>';
-                                        }
-                                    ?>
-                                    <input type="password" id="password" name="password" required="required">
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <label class="control-label" for="confirmpassword">Confirm Password</label>
-                                <div class="controls">
-                                    <input type="password" id="confirmpassword" name="confirmpassword" required="required">
-                                </div>
-                            </div>
 
                             <div class="control-group">
                                 <div class="controls">
@@ -221,7 +179,7 @@ else
                                             echo '<p class="label label-important fadeIn">You must fill out all fields.</p><br>';
                                         }
                                     ?>
-                                    <input class="btn btn-primary" type="submit" value="Register Patient">
+                                    <input class="btn btn-primary" type="submit" value="Submit Prescription">
                                 </div>
                             </div>
 
