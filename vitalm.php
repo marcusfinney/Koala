@@ -94,7 +94,7 @@ $jsonTable = json_encode($table);
                 <li class="active"><a href="vitalm.php">Vitals</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Notes</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Messages</a></li>
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Prescriptions</a></li>
+                <li><a href="prescriptionPage.php">Prescriptions</a></li>
                 <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
 			<div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent vitals">

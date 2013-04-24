@@ -50,7 +50,7 @@ else
                 <li><a href="vitalm.php">Vitals</a></li>
                 <li><a href="accountDoctors.php">Notes</a></li>
                 <li><a href="accountDoctors.php">Messages</a></li>
-                <li><a href="accountDoctors.php">Prescriptions</a></li>
+                <li><a href="prescriptionPage.php">Prescriptions</a></li>
                 <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
 
