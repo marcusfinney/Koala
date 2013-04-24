@@ -56,69 +56,8 @@ else
 
             <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
                 <div class="row">
-                    <div class="span6">
-                        <!-- <h4>Select a Patient</h4> -->
-                        <?php
-                            include 'config.php';
-                            mysql_connect($host, $user, $password) or die("cant connect");
-                            mysql_select_db($database) or die(mysql_error());
-
-                            $myID = $_SESSION["userrecord"]["iddoctor"];
-
-                            $sql = "SELECT idpatient, firstname, lastname
-                                    FROM Patients
-                                    WHERE iddoctor={$myID}";
-                            $mypatients = mysql_query($sql);
-                            
-                            $numberofpatients = mysql_num_rows($mypatients);
-
-                            if ($numberofpatients == 0) {
-                                echo '<p>You have no registered patients.</p>';
-                            }
-                            else {
-                                // ADD THE PAGE FOR VIEWING PATIENT DATA IN THE ACTION FIELD OF NEXT LINE
-
-                                // Non-bootstrapped version
-                                // echo '  <form>
-                                //             <select name="Patients">';
-                                // while ($row = mysql_fetch_assoc($mypatients)) {
-                                //     echo  "     <option value={$row['idpatient']}>{$row['lastname']}, {$row['firstname']}</option>";
-                                // }
-                                // echo '      </select>
-                                //             <br>
-                                //             <input class="btn btn-primary" type="submit" value="Select Patient">
-                                //         </form>';
-
-                                // Bootstrapped version
-                                echo '  <form class="form-horizontal" method="post" action="selectPatient.php">
-
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <h3>Select A Patient</h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <select name="Patient">';
-                                while ($row = mysql_fetch_assoc($mypatients)) {
-                                    echo  "             <option value={$row['idpatient']}>{$row['lastname']}, {$row['firstname']}</option>";
-                                }
-                                echo '              </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <input class="btn btn-primary" type="submit" value="Select Patient">
-                                                </div>
-                                            </div>
-
-                                        </form>';
-                            }
-                        ?>
-                    </div>
-                    <div class="span5">
+                    
+                    <div class="span9 offset3">
                         <!-- <h4>Create A Prescription</h4> -->
                         <form class="form-horizontal" method="post" action="createPatient.php">
 
