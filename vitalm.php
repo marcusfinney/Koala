@@ -32,8 +32,7 @@ else
 include 'config.php';
 mysql_connect($host, $user, $password) or die("cant connect");
 mysql_select_db($database) or die(mysql_error());
-// The Chart table contain two fields: Weekly_task and percentage
-//this example will display a pie chart.if u need other charts such as Bar chart, u will need to change little bit to make work with bar chart and others charts
+//this example will display a line chart
 $vit = mysql_query("SELECT * FROM Vitals");
 
 $rows = array();
@@ -43,7 +42,6 @@ $table = array();
 $table['cols'] = array(
 
     //Labels your chart, this represent the column title
-    //note that one column is in "string" format and another one is in "number" format as pie chart only required "numbers" for calculating percentage And string will be used for column title
     array('label' => 'heartrate', 'type' => 'number'),
     array('label' => 'bloodsugar', 'type' => 'number'),
     array('label' => 'bloodpressure', 'type' => 'number'),
@@ -54,9 +52,9 @@ $table['cols'] = array(
 $rows = array();
 while($r = mysql_fetch_assoc($vit)) {
     $temp = array();
-    // the following line will used to slice the Pie chart
+    // the following line will used to divide the line chart
 
-    //Values of the each slice
+    //Values of the each line
     $temp[] = array('v' => (int) $r['heartrate']); 
     $rows[] = array('c' => $temp);
     $temp[] = array('v' => (int) $r['bloodsugar']); 
@@ -164,10 +162,10 @@ $jsonTable = json_encode($table);
 											$vitalreport[$vitalcount] =   "<tr>
     																		<td>$timeofday</td>
    																			<td>$timeanddate</td>
-    																		<td>$heartrate</td>
-    																		<td>$bloodsugar</td>
-    																		<td>$bloodpressure</td>
-    																		<td>$weight</td>
+    																		<td><font color='red'>$heartrate</font></td>
+    																		<td><font color='green'>$bloodsugar</font></td>
+    																		<td><font color='blue'>$bloodpressure</font></td>
+    																		<td><font color='orange'>$weight</font></td>
   																		  </tr>";
 											$vitalcount++;
  							    			} 
@@ -179,6 +177,7 @@ $jsonTable = json_encode($table);
  							    				$i--;
  							    				}
  											}
+ 											//for line chart
  											$j = $m;
      					 		  	if($j>2){
    									$l1 = array($Gheartrate[$j-3], $Gheartrate[$j-2], $Gheartrate[$j-1], $Gheartrate[$j]);
@@ -199,7 +198,7 @@ $jsonTable = json_encode($table);
      					 		<div class="span12"><br>
      					 			<form class="form-horizontal" method="post" action="entervitals.php">
                    				     	<div class="control-group text-center">
-     					 					<?php echo "<h3 class=''> {$_SESSION["patientrecord"]["firstname"]}, {$_SESSION["patientrecord"]["lastname"]}</h3>"; ?>
+     					 					<?php echo "<h3 class=''> {$_SESSION["patientrecord"]["lastname"]}, {$_SESSION["patientrecord"]["firstname"]}</h3>"; ?>
      					 				</div>
                    				     	<div class="control-group">
                                				<label class="control-label" for="timeofday">Time of Day</label>
@@ -214,25 +213,25 @@ $jsonTable = json_encode($table);
                             			<div class="control-group">
                                				<label class="control-label" for="heartrate">Heart Rate(bpm)</label>
                              			   	<div class="controls">
-                                    			<input type="number" id="heartrate" name="heartrate" required="required">
+                                    			<input type="number" step="any" id="heartrate" name="heartrate" required="required">
                                 			</div>
                             			</div>
                             			<div class="control-group">
                                			 	<label class="control-label" for="bloodsugar">Blood Sugar(mg/dl)</label>
                                 			<div class="controls">
-                                   				<input type="number" id="bloodsugar" name="bloodsugar" required="required">
+                                   				<input type="number" step="any" id="bloodsugar" name="bloodsugar" required="required">
                                				</div>
                             			</div>
                             			<div class="control-group">
                                 			<label class="control-label" for="bloodpressure">Blood Pressure(mmHg)</label>
                                 			<div class="controls">
-                                    			<input type="number" id="bloodpressure" name="bloodpressure" required="required">
+                                    			<input type="number" step="any" id="bloodpressure" name="bloodpressure" required="required">
                                 			</div>
                             			</div>
                             			<div class="control-group">
                                 			<label class="control-label" for="weight">Mass(kg)</label>
                                 			<div class="controls">
-                                   				<input type="number" id="weight" name="weight" required="required">
+                                   				<input type="number" step="any" id="weight" name="weight" required="required">
                                 			</div>
                             			</div>	
                             			<div class="control-group">
@@ -277,9 +276,9 @@ $jsonTable = json_encode($table);
     								$pc->set_animate(true);
 
     								$pc->add_series(array('label'=>'Heart Rate'),array('showLabel'=>true));
-    								$pc->add_series(array('label'=>'Blood Sugarr'),array('showLabel'=>true));
+    								$pc->add_series(array('label'=>'Blood Sugar'),array('showLabel'=>true));
     								$pc->add_series(array('label'=>'Blood Pressure'),array('showLabel'=>true));
-    								$pc->add_series(array('label'=>'Weight'),array('showLabel'=>true));
+    								$pc->add_series(array('label'=>'Mass'),array('showLabel'=>true));
     
     								$pc->set_title(array('text'=>'Vitals'));
 									$pc->set_axes(array(
@@ -290,7 +289,7 @@ $jsonTable = json_encode($table);
       								  					'max' => 200,
       								  					'label'=>''	)
  									   ));
-									$pc->set_series_color(array('#cc6666', '#66cc66', '#6666cc','#FFDE00'));
+									$pc->set_series_color(array('red', 'green', 'blue','orange'));
    									$pc->draw(600,400);   
     								?>
      					 		</div>
