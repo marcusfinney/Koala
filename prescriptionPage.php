@@ -131,7 +131,7 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="presName">Prescription Name</label>
                                 <div class="controls">
-                                    <input type="text" id="firstname" name="firstname" required="required" autofocus>
+                                    <input type="text" id="presName" name="presName" required="required" autofocus>
                                 </div>
                             </div>
 
@@ -154,14 +154,14 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="presQuantity">Refill Date</label>
                                 <div class="controls">
-                                    <input type="text" id="lastname" name="lastname" required="required">
+                                    <input type="text" id="presRefill" name="presRefill" required="required">
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="presApp">Application Instrution</label>
                                 <div class="controls">
-                                    <select id="gender" name="gender">
+                                    <select id="presApp" name="presApp">
                                         <option value="0">Select Application method</option>
                                         <option value="1">Once a day</option>
                                         <option value="2">After every meal</option>
@@ -195,7 +195,7 @@ else
             {
                 if (isset($_GET["status"]) and $_GET["status"] == "success")
                 {
-                    echo '<script>alert("Patient successfully registered.")</script>';
+                    echo '<script>alert("Prescription successfully created.")</script>';
                 }
                 if (isset($_GET["error"]) and $_GET["error"] == "unauthorized")
                 {
