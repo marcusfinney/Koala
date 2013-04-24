@@ -58,7 +58,7 @@ else
                 <li><a href="vitalm.php">Vitals</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Notes</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Messages</a></li>
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Prescriptions</a></li>
+                <li><a href="prescriptionPage.php">Prescriptions</a></li>
                 <li class="active"><a href="editInfo.php">Edit Info</a></li>
             </ul>
 
