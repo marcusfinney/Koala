@@ -78,22 +78,13 @@ else
                                 <label class="control-label" for="age">Quantity</label>
                                 <div class="controls">
                                     <input type="number" min="1" max="999" id="presQuantity" name="presQuantity" required="required">
-                                    <!--
-                                    <?php 
-                                        echo "<select name='presQuantity'>";
-                                        for ($i = 0; $i <= 150; $i++) {
-                                            echo "<option value='$i'>$i</option>";
-                                        }
-                                        echo "</select>"; 
-                                    ?>
-                                    -->
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="presQuantity">Refill Date</label>
                                 <div class="controls">
-                                    <input type="text" id="presRefill" name="presRefill" required="required">
+                                    <input type="date" id="presRefill" name="presRefill" required="required">
                                 </div>
                             </div>
 
