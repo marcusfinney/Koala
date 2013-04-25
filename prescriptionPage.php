@@ -2,7 +2,7 @@
 session_start();
 ob_start(); 
 
-if (!isset($_SESSION['username']))
+if(!isset($_SESSION['username']))
 {
     header("Location: index.php?error=unauthorized");
     die();
@@ -59,7 +59,7 @@ else
                     
                     <div class="span9 offset3">
                         <!-- <h4>Create A Prescription</h4> -->
-                        <form class="form-horizontal" method="post" action="createPatient.php">
+                        <form class="form-horizontal" method="post" action="createPrescription.php">
 
                             <div class="control-group">
                                 <div class="controls">
@@ -77,10 +77,10 @@ else
                             <div class="control-group">
                                 <label class="control-label" for="age">Quantity</label>
                                 <div class="controls">
-                                    <input type="number" min="1" max="999" id="age" name="age" required="required">
+                                    <input type="number" min="1" max="999" id="presQuantity" name="presQuantity" required="required">
                                     <!--
                                     <?php 
-                                        echo "<select name='age'>";
+                                        echo "<select name='presQuantity'>";
                                         for ($i = 0; $i <= 150; $i++) {
                                             echo "<option value='$i'>$i</option>";
                                         }
