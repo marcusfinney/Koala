@@ -118,7 +118,7 @@ else
                                             echo '<p class="label label-important fadeIn">You must fill out all fields.</p><br>';
                                         }
                                     ?>
-                                    <input class="btn btn-primary" type="submit" value="Submit Prescription">
+                                    <input class="btn btn-primary" type="submit" value="Submit Prescription to Parmacy">
                                 </div>
                             </div>
 
