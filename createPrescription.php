@@ -34,9 +34,9 @@ $presRefill			= $_POST["presRefill"];
 $presApp			= $_POST["presApp"];
 
 
-if (!$presName or !$presQuantity or !$presRefill or !$presApp)
+if (!$presName or !$presQuantity or !$presRefill or $presApp == 0)
 {
-    header("location: accountDoctors.php?error=incompleteform");
+    header("location: prescriptionPage.php?error=incompleteform");
     die();
 }
 
