@@ -106,10 +106,10 @@ $jsonTable = json_encode($table);
      					 		<div class="span12">
      					 		</div>
      					 	</div>
-     					 	<div class="row-fluid">
-     					 		<div class="span12 offset4">
-				  				<button onclick="return toggle('para1')" class="btn btn-primary">Input Vitals</button>
-				  				<button onclick="return toggle('para2')" class="btn btn-secondary">Vitals Feed</button>     					 		</div>
+     					 	<div class="row">
+     					 		<div class="span12 offset2">
+				  				<button onclick="return toggle('para1')" class="btn btn-primary span5">Adjust Vital Info</button>
+				  				<button onclick="return toggle('para2')" class="btn btn-secondary span5">View Vitals Feed</button>     					 		</div>
      					 	</div>
      					 	<div class="row-fluid" id="para1" style="display:none; width:500px; height:400px; overflow: auto;">
      					 		<br><div class="span12">
@@ -194,16 +194,19 @@ $jsonTable = json_encode($table);
 									</table>
      					 		</div>
      					 	</div>
-     					 	<div class="row-fluid" id="para2" style="display:block">
-     					 		<div class="span12"><br>
-     					 			<form class="form-horizontal" method="post" action="entervitals.php">
-                   				     	<div class="control-group text-center">
-     					 					<?php echo "<h3 class=''> {$_SESSION["patientrecord"]["lastname"]}, {$_SESSION["patientrecord"]["firstname"]}</h3>"; ?>
+<?php if(($accountType==2)or($accountType ==3)){$elsepage = "id='para2' style='display:block'";} 
+      elseif($accountType==1){$elsepage = "id='para2' style='display:none'";}?>     					 	
+     					 	<div class="row-fluid" <?php echo $elsepage;?> >
+     					 		<div class="span12 offset4"><br>
+     					 			<form class="form" method="post" action="entervitals.php">
+                   				     	<div class="control-group">
+     					 					<?php echo "<h3 class=''>{$_SESSION["patientrecord"]["lastname"]}, {$_SESSION["patientrecord"]["firstname"]}</h3>"; ?>
      					 				</div>
                    				     	<div class="control-group">
-                               				<label class="control-label" for="timeofday">Time of Day</label>
+                               				<label class="control-label" for="timeofday"></label>
                                				<div class="controls">
 												<select id="timeofday" name="timeofday" required="required">
+ 													<option value="">Time of Day</option>
  													<option value="0">Morning</option>
  													<option value="1">Afternoon</option>
  													<option value="2">Evening</option>
@@ -211,27 +214,27 @@ $jsonTable = json_encode($table);
                                 			</div>
                            			 	</div>
                             			<div class="control-group">
-                               				<label class="control-label" for="heartrate">Heart Rate(bpm)</label>
+                               				<label class="control-label" for="heartrate"></label>
                              			   	<div class="controls">
-                                    			<input type="number" step="any" id="heartrate" name="heartrate" required="required">
+                                    			<input type="number" step="any" id="heartrate" placeholder="Heart Rate(bpm)" name="heartrate" required="required">
                                 			</div>
                             			</div>
                             			<div class="control-group">
-                               			 	<label class="control-label" for="bloodsugar">Blood Sugar(mg/dl)</label>
+                               			 	<label class="control-label" for="bloodsugar"></label>
                                 			<div class="controls">
-                                   				<input type="number" step="any" id="bloodsugar" name="bloodsugar" required="required">
+                                   				<input type="number" step="any" id="bloodsugar" placeholder="Blood Sugar(mg/dl)" name="bloodsugar" required="required">
                                				</div>
                             			</div>
                             			<div class="control-group">
-                                			<label class="control-label" for="bloodpressure">Blood Pressure(mmHg)</label>
+                                			<label class="control-label" for="bloodpressure"></label>
                                 			<div class="controls">
-                                    			<input type="number" step="any" id="bloodpressure" name="bloodpressure" required="required">
+                                    			<input type="number" step="any" id="bloodpressure" placeholder="Blood Pressure(mmHg)" name="bloodpressure" required="required">
                                 			</div>
                             			</div>
                             			<div class="control-group">
-                                			<label class="control-label" for="weight">Mass(kg)</label>
+                                			<label class="control-label" for="weight"></label>
                                 			<div class="controls">
-                                   				<input type="number" step="any" id="weight" name="weight" required="required">
+                                   				<input type="number" step="any" id="weight" placeholder="Mass(kg)" name="weight" required="required">
                                 			</div>
                             			</div>	
                             			<div class="control-group">
@@ -249,6 +252,55 @@ $jsonTable = json_encode($table);
      					 		</div>
      					 	</div>
   					  	</div>
+<?php if($accountType==(1)){$doctorpage = "id='para2' style='display:block'";} 
+      elseif(($accountType==2) or ($accountType==3)){$doctorpage = "id='para2' style='display:none'";}?>     					 	
+     					 <div class="row-fluid" <?php echo $doctorpage;?> >
+  					  		<div class="span12 offset1"><br>
+  					  			<form class="form" method="post" action="enterbounds.php">
+  					  				<div class="control-group">
+     					 				<?php echo "<h3 class=''>{$_SESSION["patientrecord"]["lastname"]}, {$_SESSION["patientrecord"]["firstname"]}</h3>"; ?>
+     					 			</div>
+  					  				<div class="control-group">
+                               			<label class="control-label" for="heartratebounds"></label>
+                             			   	<div class="controls">
+                                    			<input class="span2" type="number" step="any" id="HRmn" placeholder="Heart Rate Min" name="HRmin" required="required">
+                                    			<input class="span2" type="number" step="any" id="HRmax" placeholder="Heart Rate Max" name="HRmax" required="required">
+                                			</div>
+                            		</div>
+  					  				<div class="control-group">
+                               			<label class="control-label" for="bloodsugarbounds"></label>
+                             			   	<div class="controls">
+                                    			<input class="span2" type="number" step="any" id="BSmn" placeholder="Blood Sugar Min" name="BRmin" required="required">
+                                    			<input class="span2" type="number" step="any" id="BSmax" placeholder="Blood Sugar Max" name="BRmax" required="required">
+                                			</div>
+                            		</div>  
+  					  				<div class="control-group">
+                               			<label class="control-label" for="bloodpressurebounds"></label>
+                             			   	<div class="controls">
+                                    			<input class="span2" type="number" step="any" id="BPmn" placeholder="BLood Pressure Min" name="BPmin" required="required">
+                                    			<input class="span2" type="number" step="any" id="BPmax" placeholder="Blood Pressure Max" name="BPmax" required="required">
+                                			</div>
+                            		</div>  
+  					  				<div class="control-group">
+                               			<label class="control-label" for="weight"></label>
+                             			   	<div class="controls">
+                                    			<input class="span2" type="number" step="any" id="Wmn" placeholder="Weight Min" name="Wmin" required="required">
+                                    			<input class="span2" type="number" step="any" id="Wmax" placeholder="Weight Max" name="Wmax" required="required">
+                                			</div>
+                            		</div>   
+                            		<div class="control-group">
+                               				 <div class="controls">
+    										<?php
+                          					if ($_GET and $_GET["status"] == "success") {
+                               				 echo '<p class="label label-inverse fadeIn">Weekly Bounds Successfully entered</p><br>';
+                            				}
+                        					?>
+                                    		<input class="btn btn-primary span2" type="submit" value="Enter Ranges">
+                                			</div>
+                           				</div>                         		                          		                        		
+								</form>
+  					  		</div>
+  					  	</div>
   					  	<div><br>
   					  		<!--<div class="progress progress-striped active"> Sufficient Number of Vitals Entered?
   					  				<?php 	if($vitalcount = 0)
@@ -265,8 +317,8 @@ $jsonTable = json_encode($table);
   											{echo '<div class="bar" style="width: 1000%;"></div>';} ?> 										
 							</div>-->
   					  	</div>
-  					  	<div class="span5">
-  					  		<div class="row offset1">
+  					  	<div class="span4">
+  					  		<div class="row-fluid offset1">
      					 		<div class="span12"><br><br>
      					 		  <?php
 									$pc = new C_PhpChartX(array($l1,$l2,$l3,$l4),'Vitals');
