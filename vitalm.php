@@ -94,7 +94,7 @@ $jsonTable = json_encode($table);
                 <?php if ($accountType != 2) echo '<li><a href="messagePage.php">Messages</a></li>'; ?>
                 <?php if ($accountType == 1) echo '<li><a href="prescriptionPage.php">Prescriptions</a></li>'; ?>
                 <?php if ($accountType != 3) echo '<li><a href="editInfo.php">Edit Info</a></li>';?>
-                <?php if ($accountType = 3) echo '<li><a href="updateInfo.php">Update Info</a></li>';?>
+                <?php if ($accountType = 3) echo '<li><a href="updateInfo.php">Update	 Info</a></li>';?>
             </ul>
 			<div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
 				<div class="container-fluid">
