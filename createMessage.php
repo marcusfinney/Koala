@@ -23,7 +23,7 @@ $authorname 		= $_SESSION["userrecord"]["firstname"] . " " . $_SESSION["userreco
 $authorid 			= $_SESSION["userrecord"]["association"];
 $message			= $_POST["message"];
 
-$sql = "INSERT INTO messages (iddoctor, idpatient, authorid, message, authorname)
+$sql = "INSERT INTO Messages (iddoctor, idpatient, authorid, message, authorname)
         VALUES ($iddoctor, $idpatient, $authorid, '$message', '$authorname')";
 $newrecord = mysql_query($sql);
 

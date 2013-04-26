@@ -51,9 +51,8 @@ else
             -->
 
             <ul class="clear nav nav-tabs">
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Vitals</a></li>
-                <!-- <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Notes</a></li> -->
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Messages</a></li>
+                <li><a href="accountPatients.php">Vitals</a></li>
+                <li><a href="messagePage.php">Messages</a></li>
                 <li class="active"><a href="updateInfo.php">Update Info</a></li>
             </ul>
 
