@@ -198,7 +198,7 @@ $jsonTable = json_encode($table);
       elseif($accountType==1){$elsepage = "id='para2' style='display:none'";}?>     					 	
      					 	<div class="row-fluid" <?php echo $elsepage;?> >
      					 		<div class="span12 offset4"><br>
-     					 			<form class="form" method="post" action="entervitals.php">
+     					 			<form class="row-fluid" method="post" action="entervitals.php">
                    				     	<div class="control-group">
      					 					<?php echo "<h3 class=''>{$_SESSION["patientrecord"]["lastname"]}, {$_SESSION["patientrecord"]["firstname"]}</h3>"; ?>
      					 				</div>
@@ -256,7 +256,7 @@ $jsonTable = json_encode($table);
       elseif(($accountType==2) or ($accountType==3)){$doctorpage = "id='para2' style='display:none'";}?>     					 	
      					 <div class="row-fluid" <?php echo $doctorpage;?> >
   					  		<div class="span12 offset1"><br>
-  					  			<form class="form" method="post" action="enterbounds.php">
+  					  			<form class="row-fluid" method="post" action="enterbounds.php">
   					  				<div class="control-group">
      					 				<?php echo "<h3 class=''>{$_SESSION["patientrecord"]["lastname"]}, {$_SESSION["patientrecord"]["firstname"]}</h3>"; ?>
      					 			</div>
@@ -277,7 +277,7 @@ $jsonTable = json_encode($table);
   					  				<div class="control-group">
                                			<label class="control-label" for="bloodpressurebounds"></label>
                              			   	<div class="controls">
-                                    			<input class="span2" type="number" step="any" id="BPmn" placeholder="BLood Pressure Min" name="BPmin" required="required">
+                                    			<input class="span2" type="number" step="any" id="BPmn" placeholder="Blood Pressure Min" name="BPmin" required="required">
                                     			<input class="span2" type="number" step="any" id="BPmax" placeholder="Blood Pressure Max" name="BPmax" required="required">
                                 			</div>
                             		</div>  
@@ -301,7 +301,7 @@ $jsonTable = json_encode($table);
 								</form>
   					  		</div>
   					  	</div>
-  					  	<div><br>
+
   					  		<!--<div class="progress progress-striped active"> Sufficient Number of Vitals Entered?
   					  				<?php 	if($vitalcount = 0)
   											{echo '<div class="bar" style="width: 0%;"></div>';}
@@ -316,7 +316,7 @@ $jsonTable = json_encode($table);
   											else
   											{echo '<div class="bar" style="width: 1000%;"></div>';} ?> 										
 							</div>-->
-  					  	</div>
+
   					  	<div class="span4">
   					  		<div class="row-fluid offset1">
      					 		<div class="span12"><br><br>
