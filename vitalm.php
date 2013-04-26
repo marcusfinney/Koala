@@ -93,7 +93,7 @@ $jsonTable = json_encode($table);
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Select Patient</a></li>
                 <li class="active"><a href="vitalm.php">Vitals</a></li>
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Notes</a></li>
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Messages</a></li>
+                <li><a href="messagePage.php">Messages</a></li>
                 <li><a href="prescriptionPage.php">Prescriptions</a></li>
                 <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
