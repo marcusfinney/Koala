@@ -16,13 +16,14 @@ if ($_SESSION["userrecord"]["association"] == 1)
 else
 {
 	$iddoctor = $_SESSION["patientrecord"]["iddoctor"];
-	$idpatient = $_SESSION["patientrecor"]["idpatient"];
+	$idpatient = $_SESSION["patientrecord"]["idpatient"];
 }
 
+$authorid 			= $_SESSION["userrecord"]["association"];
 $message			= $_POST["message"];
 
-$sql = "INSERT INTO messages (iddoctor, idpatient, message)
-        VALUES ($iddoctor, $idpatient, '$message')";
+$sql = "INSERT INTO messages (iddoctor, idpatient, authorid, message)
+        VALUES ($iddoctor, $idpatient, $authorid, '$message')";
 $newrecord = mysql_query($sql);
 
 //success or fail message
