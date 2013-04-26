@@ -123,7 +123,7 @@ else
 
                     </div>
                     <div class="span5">
-                        <!-- <h4>Create A Message</h4> -->
+                        <!-- <h4>Create A Note</h4> -->
                         <form class="form-horizontal" method="post" action="createNote.php">
 
                             <div class="control-group">
