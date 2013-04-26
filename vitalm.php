@@ -85,16 +85,11 @@ $jsonTable = json_encode($table);
             ?>
             <a href="logout.php"><h1 class="pull-right btn btn-inverse">Sign Out</h1></a>
             <ul class="clear nav nav-tabs">
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Select Patient</a></li>
+                <?php if ($accountType != 3) echo '<li><a href="account<?php echo $_SESSION["accountType"];?>.php">Select Patient</a></li>'; ?>
                 <li class="active"><a href="vitalm.php">Vitals</a></li>
-                <li><a href="notes.php">Notes</a></li>
-<<<<<<< HEAD
-                <li><a href="messages.php">Messages</a></li>
-                <li><a href="prescriptionPage.php">Prescriptions</a></li>
-=======
+                <?php if ($accountType != 3) echo '<li><a href="notes.php">Notes</a></li>'; ?>
                 <?php if ($accountType != 2) echo '<li><a href="messagePage.php">Messages</a></li>'; ?>
                 <?php if ($accountType == 1) echo '<li><a href="prescriptionPage.php">Prescriptions</a></li>'; ?>
->>>>>>> 8abf19fbc0602dd50abb100c4a7671b68fd80a64
                 <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
 			<div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">

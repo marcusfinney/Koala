@@ -21,6 +21,9 @@ else
         die();
     }
 }
+
+        header("Location: vitalm.php");
+
 ?>
 
 <!DOCTYPE html>

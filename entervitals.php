@@ -14,7 +14,7 @@ else
         header("Location: accountDoctors.php?error=unauthorized");
         die();
     }
-    if ($accountType == 2)
+    if ($accountType == 2 and !$_POST)
     {
         header("Location: accountNurses.php?error=unauthorized");
         die();
