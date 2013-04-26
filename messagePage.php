@@ -124,6 +124,7 @@ else
 
                             <div class="control-group">
                                 <div class="controls">
+                                    <br><br><br>
                                     <h3>Create a Message</h3>
                                 </div>
                             </div>
@@ -131,7 +132,7 @@ else
                              <div class="control-group">
                                 <label class="control-label" for="message"></label>
                                 <div class="controls">
-                                    <textarea rows="20" cols="5" id="message" name="message"></textarea>
+                                    <textarea rows="10" cols="10" id="message" name="message"></textarea>
                                 </div>
                             </div>
                             
