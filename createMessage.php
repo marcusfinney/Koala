@@ -10,20 +10,21 @@ mysql_select_db($database) or die(mysql_error());
 
 if ($_SESSION["userrecord"]["association"] == 1)
 {
-	$iddoctor = $_SESSION["userrecord"]["iddoctor"];
+	$iddoctor  = $_SESSION["userrecord"]["iddoctor"];
 	$idpatient = $_SESSION["patientrecord"]["idpatient"];
 }
 else
 {
-	$iddoctor = $_SESSION["patientrecord"]["iddoctor"];
+	$iddoctor  = $_SESSION["patientrecord"]["iddoctor"];
 	$idpatient = $_SESSION["patientrecord"]["idpatient"];
 }
 
+$authorname 		= $_SESSION["userrecord"]["firstname"] . " " . $_SESSION["userrecord"]["lastname"];
 $authorid 			= $_SESSION["userrecord"]["association"];
 $message			= $_POST["message"];
 
-$sql = "INSERT INTO messages (iddoctor, idpatient, authorid, message)
-        VALUES ($iddoctor, $idpatient, $authorid, '$message')";
+$sql = "INSERT INTO messages (iddoctor, idpatient, authorid, message, authorname)
+        VALUES ($iddoctor, $idpatient, $authorid, '$message', '$authorname')";
 $newrecord = mysql_query($sql);
 
 //success or fail message

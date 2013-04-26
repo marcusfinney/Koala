@@ -44,11 +44,6 @@ else
             ?>
             <a href="logout.php"><h1 class="pull-right btn btn-inverse">Sign Out</h1></a>
 
-            <!--
-                need to create pages for all the tabs
-                planning on making each page have the same 'top' section, just different content
-            -->
-
             <ul class="clear nav nav-tabs">
                 <li><a href="accountDoctors.php">Select Patient</a></li>
                 <li><a href="vitalm.php">Vitals</a></li>
@@ -62,23 +57,66 @@ else
                 <div class="row">
                     
                     <div class="span5 offset1">
-                        <!-- <h4>Create A Prescription</h4> -->
-                        <form class="form-horizontal" method="post" action="createMessage.php">
+                        <br><br><br><br>
+                        <table class="table table-striped message-table">
+                        <?php
+                            include 'config.php';
+                            mysql_connect($host, $user, $password) or die("cant connect");
+                            mysql_select_db($database) or die(mysql_error());
 
-                            <div class="control-group">
-                                <div class="controls">
-                                    <h3>Create a Message</h3>
-                                </div>
-                            </div>
+                            $doctorid = $_SESSION["userrecord"]["iddoctor"];
+                            $patientid = $_SESSION["patientrecord"]["idpatient"];
+            
+                            $sql = "SELECT * 
+                                    FROM  messages
+                                    WHERE iddoctor={$doctorid} AND  idpatient={$patientid}
+                                    ORDER BY dateandtime DESC";
+            
+                            $mymessages = mysql_query($sql)or die('Invalid query: ' .mysql_error());
+            
+                            $numberofmessages = mysql_num_rows($mymessages);
 
-                             <div class="control-group">
-                                <label class="control-label" for="message">Message</label>
-                                <div class="controls">
-                                    <textarea rows="20" cols="5" id="message" name="message"></textarea>
-                                </div>
-                            </div>
+                            if ($numberofmessages == 0) 
+                            {
+                                echo 'No Messages.';
+                            }
+                            else
+                            {
+                            //set up with arrays so database prints in reverse(most recent) 
+                            $messagecount = 0;
+                            while ($row = mysql_fetch_assoc($mymessages)) 
+                            {
+                            $dateandtime = $row['dateandtime'];
 
-                        </form>
+                            if($row['authorid'] == 1){
+                                $author = "Dr." . $row['authorname'];
+                            }
+                            else{
+                                $author = $row['authorname'];
+                            }
+
+                            $message = $row['message'];
+                        
+                            $messagereport[$messagecount] = "<tr>
+                                                            <td>{$dateandtime}</td>
+                                                            <td>From: {$author}</td>
+                                                            <td>{$message}</td>
+                                                            </tr>";
+                                                            
+                            $messagecount++;
+                            } 
+                            $i=$messagecount-1;   
+                            $m=$messagecount-1;
+                            while($i>=0)
+                                {
+                                print $messagereport[$i];
+                                $i--;
+                                }
+                            }
+                        ?> 
+                        <tr></tr>
+                    </table>
+
                     </div>
                     <div class="span5">
                         <!-- <h4>Create A Prescription</h4> -->
