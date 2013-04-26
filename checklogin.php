@@ -38,7 +38,7 @@ if ($count == 1) {
 
         $_SESSION["patientrecord"] = $patient;
 
-        header("location:accountPatients.php");
+        header("location:vitalm.php");
     }
     else
     {header("location:accountAdmins.php");}

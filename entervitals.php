@@ -19,11 +19,7 @@ else
         header("Location: accountNurses.php?error=unauthorized");
         die();
     }
-    if ($accountType == 3)
-    {
-        header("Location: accountPatients.php?error=unauthorized");
-        die();
-    }
+
 }
 
 $iddoctor = $_SESSION["patientrecord"]["iddoctor"];

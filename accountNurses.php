@@ -46,13 +46,13 @@ else
             -->
 
             <ul class="clear nav nav-tabs">
-                <li class="active"><a href="accountDoctors.php">Select Patient</a></li>
+                <li class="active"><a href="accountNurses.php">Select Patient</a></li>
                 <li><a href="vitalm.php">Vitals</a></li>
                 <li><a href="notes.php">Notes</a></li>
                 <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
 
-            <div class="<?php if (!$_GET) echo 'fadeIn ';?>tabcontent">
+            <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
                 <div class="row">
                     <div class="span10 offset2">
                         <!-- <h4>Select a Patient</h4> -->
