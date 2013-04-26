@@ -57,7 +57,7 @@ else
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Select Patient</a></li>
                 <li><a href="vitalm.php">Vitals</a></li>
                 <li class="active"><a href="notes.php">Notes</a></li>
-                <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Messages</a></li>
+                <li><a href="messagePage.php">Messages</a></li>
                 <?php if ($accountType == 1) echo '<li><a href="prescriptionPage.php">Prescriptions</a></li>'; ?>
                 <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
