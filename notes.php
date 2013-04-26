@@ -50,6 +50,7 @@ else
 
             <ul class="clear nav nav-tabs">
                 <?php if ($accountType == 1) echo '<li><a href="accountDoctors.php">Select Patient</a></li>'; ?>
+                <?php if ($accountType == 2) echo '<li><a href="accountNurses.php">Select Patient</a></li>'; ?>
                 <li><a href="vitalm.php">Vitals</a></li>
                 <?php if ($accountType != 3) echo '<li class="active"><a href="notes.php">Notes</a></li>'; ?>
                 <?php if ($accountType != 2) echo '<li><a href="messagePage.php">Messages</a></li>' ;?>
