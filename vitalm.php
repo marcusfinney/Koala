@@ -81,17 +81,14 @@ $jsonTable = json_encode($table);
                 $title = "";
                 if ($accountType == 1) $title = "Dr.";
                 if ($accountType == 2) $title = "Nurse";
+                if ($accountType == 3) $title = "Welcome, ";
                 echo "<h1 class='pull-left'>{$title} {$_SESSION["userrecord"]["firstname"]} {$_SESSION["userrecord"]["lastname"]}</h1>";
             ?>
             <a href="logout.php"><h1 class="pull-right btn btn-inverse">Sign Out</h1></a>
             <ul class="clear nav nav-tabs">
-                <?php if ($accountType != 3) echo '<li><a href="account<?php echo $_SESSION["accountType"];?>.php">Select Patient</a></li>'; ?>
+                <?php if ($accountType != 3) echo '<li><a href="account$_SESSION["accountType"]">Select Patient</a></li>'; ?>
                 <li class="active"><a href="vitalm.php">Vitals</a></li>
-<<<<<<< HEAD
                 <?php if ($accountType != 3) echo '<li><a href="notes.php">Notes</a></li>'; ?>
-=======
-                <li><a href="notes.php">Notes</a></li>
->>>>>>> a1cdd85ef8fc1ad02cd01a37f20050631b03b924
                 <?php if ($accountType != 2) echo '<li><a href="messagePage.php">Messages</a></li>'; ?>
                 <?php if ($accountType == 1) echo '<li><a href="prescriptionPage.php">Prescriptions</a></li>'; ?>
                 <li><a href="editInfo.php">Edit Info</a></li>
