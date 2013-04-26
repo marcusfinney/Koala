@@ -129,7 +129,7 @@ else
                             </div>
 
                              <div class="control-group">
-                                <label class="control-label" for="message">Message</label>
+                                <label class="control-label" for="message"></label>
                                 <div class="controls">
                                     <textarea rows="20" cols="5" id="message" name="message"></textarea>
                                 </div>
