@@ -12,27 +12,27 @@ if ($_SESSION["userrecord"]["association"] == 1)
 {
 	$iddoctor  = $_SESSION["userrecord"]["iddoctor"];
 	$idpatient = $_SESSION["patientrecord"]["idpatient"];
+	$idnurse   = "-1";
 }
 else
 {
 	$iddoctor  = $_SESSION["patientrecord"]["iddoctor"];
 	$idpatient = $_SESSION["patientrecord"]["idpatient"];
+	$idnurse   = $_SESSION["userrecord"]["idnurse"];
 }
 
-$authorname 		= $_SESSION["userrecord"]["firstname"] . " " . $_SESSION["userrecord"]["lastname"];
-$authorid 			= $_SESSION["userrecord"]["association"];
 $message			= $_POST["message"];
 
-$sql = "INSERT INTO Messages (iddoctor, idpatient, authorid, message, authorname)
-        VALUES ($iddoctor, $idpatient, $authorid, '$message', '$authorname')";
+$sql = "INSERT INTO Notes (iddoctor, idpatient, idnurse, note)
+        VALUES ($iddoctor, $idpatient, $idnurse, '$message')";
 $newrecord = mysql_query($sql);
 
 //success or fail message
 if($newrecord){
-	header("location:messagePage.php?status=success");
+	header("location:notes.php?status=success");
 }
 else{
-	header("location:messagePage.php?status=fail");
+	header("location:notes.php?status=fail");
 }
 
 ?>

@@ -88,8 +88,13 @@ $jsonTable = json_encode($table);
                 <li><a href="account<?php echo $_SESSION["accountType"];?>.php">Select Patient</a></li>
                 <li class="active"><a href="vitalm.php">Vitals</a></li>
                 <li><a href="notes.php">Notes</a></li>
+<<<<<<< HEAD
                 <li><a href="messages.php">Messages</a></li>
                 <li><a href="prescriptionPage.php">Prescriptions</a></li>
+=======
+                <?php if ($accountType != 2) echo '<li><a href="messagePage.php">Messages</a></li>'; ?>
+                <?php if ($accountType == 1) echo '<li><a href="prescriptionPage.php">Prescriptions</a></li>'; ?>
+>>>>>>> 8abf19fbc0602dd50abb100c4a7671b68fd80a64
                 <li><a href="editInfo.php">Edit Info</a></li>
             </ul>
 			<div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
@@ -184,6 +189,7 @@ $jsonTable = json_encode($table);
     										$l2 = array(0);
     										$l3 = array(0);
     										$l4 = array(0);}
+    										/*
     										//Decides whether value most recently entered is in bounds of what doctor says is healthy. If not, graph line turns red, and notification is sent to doctor.
     										include 'config.php';
                           					mysql_connect($host, $user, $password) or die("cant connect");
@@ -208,47 +214,55 @@ $jsonTable = json_encode($table);
                             				{}
                             				else
                             				{ 
-                            				$boundcount=0
+                            				$boundcount=0;
                             				while($row2 = mysql_fetch_assoc($mybounds)){
-                                			$boundHRmin = $row2["HRmin"];
+                                			$boundHRmin = $row2['HRmin'];
                                 			$boundBSmin = $row2['BSmin'];
                                 			$boundBPmin = $row2['BPmin'];
                                 			$boundWmin = $row2['Wmin'];
-                                			$boundHRmax = $row2["HRmax"];
+                                			$boundHRmax = $row2['HRmax'];
                                 			$boundBSmax = $row2['BSmax'];
                                 			$boundBPmax = $row2['BPmax'];
                                 			$boundWmax = $row2['Wmax'];
-                                			$boundcount++;}
                                 			
+                                			$Xheartrate[$boundcount] = $boundHRmin;
+                                			$Yheartrate[$boundcount] = $boundHRmax;
+                                			$Xbloodsugar[$boundcount] = $boundBSmin;
+                                			$Ybloodsugar[$boundcount] = $boundBSmax;
+                                			$Xbloodpressure[$boundcount] = $boundBPmin;
+                                			$Ybloodpressure[$boundcount] = $boundBPmax;
+                                			$Xweight[$vitalcount] = $boundWmin;
+                                 			$Yweight[$vitalcount] = $boundWmax;
+                               			
+                                			$boundcount++;}
+                                			$a=$boundcount-1;
                                 			$Warning=0; $HRW=false; $BSW=false; $BPW=false; $WW=false;
                                 			//heartrate
-                                			if(($Gheartrate[$j] > $boundHRmax) or ($Gheartrate[$j] < $boundHRmin))
+                                			if(($Gheartrate[$j] > $Yheartrate[$a]) or ($Gheartrate[$j] < $Xheartrate[$a]))
                                 			{$Warning++; $HRW=true;}
                                 			else
-                                			{$Warning--; $HRW=false;}
+                                			{$HRW=false;}
                                 			//bloodsugar
-                                			if(($Gbloodsugar[$j] > $boundBSmax) or ($Gbloodsugar[$j] < $boundBSmin))
+                                			if(($Gbloodsugar[$j] > $Ybloodsugar[$a]) or ($Gbloodsugar[$j] < $Xbloodsugar[$a]))
                                 			{$Warning++; $BSW=true;}
                                 			else
-                                			{$Warning--; $BSW=false;}
+                                			{$BSW=false;}
                                 			//bloodpressure
-                                			if(($Gbloodpressure[$j] > $boundBPmax) or ($Gbloodpressure[$j] < $boundBPmin))
+                                			if(($Gbloodpressure[$j] > $Ybloodpressure[$a]) or ($Gbloodpressure[$j] < $Xbloodpressure[$a]))
                                 			{$Warning++; $BPW=true;}
                                 			else
-                                			{$Warning--; $BPW=false;}
+                                			{$BPW=false;}
                                 			//weight(mass)
-                                			if(($Gweight[$j] > $boundWmax) or ($Gweight[$j] < $boundWmin))
+                                			if(($Gweight[$j] > $Yweight[$a]) or ($Gweight[$j] < $Xweight[$a]))
                                 			{$Warning++; $WW=true;}
                                 			else
-                                			{$Warning--; $WW=false;}
-											
+                                			{$WW=false;}
 											//$boundary = array($HRW,$BSW,$BPW,$WW);
 											
 											//so the warning level can't go below zero
 											if($Warning<=0)
-											{$Warning = 0;}                                			
-                                			}
-                                			
+											{$Warning = 0;}   
+                                			}$b=0;*/
                         				?> 
      					 				<tr></tr>
 									</table>
@@ -427,14 +441,9 @@ $jsonTable = json_encode($table);
 									$pc->set_series_color(array('red', 'green', 'blue','orange'));
    									$pc->draw(600,400);   
     								?>
-     					 	<?php	$b=0;
-     					 		if(($HRW==true) or ($BSW==true) or ($BPW==true) or ($WW==true))
-     					 		{echo '<div class="alert">
- 												<button type="button" class="close" data-dismiss="alert">&times;</button>
-  												<strong>Warning!</strong> Vitals are at unhealthy levels. Please contact your doctor.
-												</div>';
-								echo $boundWmax;
-								}
+     					 	<?php				
+								//echo $Gheartrate[$j].' '.$Yheartrate[$a].' '.$Gheartrate[$j].' '.$Xheartrate[$a].'<br>';
+								//echo $Gbloodsugar[$j].' '.$Ybloodsugar[$a].' '.$Gbloodsugar[$j].' '.$Xbloodsugar[$a];
 								?>
      					 		</div>
 							</div>

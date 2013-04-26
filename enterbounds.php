@@ -49,7 +49,7 @@ if (!$HRmin or !$HRmax or !$BSmin or !$BSmax
     header("location: vitalm.php?error=incompleteform");
 }
         
-$sql = "UPDATE Bounds (iddoctor, idnurse, idpatient, HRmin, HRmax, BSmin, BSmax, BPmin, BPmax, Wmin, Wmax)
+$sql = "INSERT INTO Bounds (iddoctor, idnurse, idpatient, HRmin, HRmax, BSmin, BSmax, BPmin, BPmax, Wmin, Wmax)
         VALUES ($iddoctor, $idnurse, $idpatient, '$HRmin', '$HRmax', '$BSmin', '$BSmax', '$BPmin', '$BPmax', '$Wmin', '$Wmax')";
 
 $newbound = mysql_query($sql);

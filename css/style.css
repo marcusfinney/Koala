@@ -79,3 +79,7 @@ display:block;
 .vitals {
 	height: 550px;
 }
+
+.message-table td{
+	word-wrap: break-word;
+}
