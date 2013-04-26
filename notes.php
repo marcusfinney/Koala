@@ -52,7 +52,7 @@ else
                 <?php if ($accountType == 1) echo '<li><a href="accountDoctors.php">Select Patient</a></li>'; ?>
                 <li><a href="vitalm.php">Vitals</a></li>
                 <?php if ($accountType != 3) echo '<li class="active"><a href="notes.php">Notes</a></li>'; ?>
-                <li><a href="messagePage.php">Messages</a></li>
+                <?php if ($accountType != 2) echo '<li><a href="messagePage.php">Messages</a></li>' ;?>
                 <?php if ($accountType == 1) echo '<li><a href="prescriptionPage.php">Prescriptions</a></li>'; ?>
                 <?php if ($accountType != 3) echo '<li><a href="editInfo.php">Edit Info</a></li>';
                       else                   echo '<li><a href="updateInfo.php">Update Info</a></li>'; ?>
