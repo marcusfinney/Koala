@@ -48,8 +48,8 @@ else
             <ul class="clear nav nav-tabs">
                 <li class="active"><a href="accountDoctors.php">Select Patient</a></li>
                 <li><a href="vitalm.php">Vitals</a></li>
-                <li><a href="accountDoctors.php">Notes</a></li>
-                <li><a href="accountDoctors.php">Messages</a></li>
+                <li><a href="notes.php">Notes</a></li>
+                <li><a href="messagePage.php">Messages</a></li>
                 <li><a href="prescriptionPage.php">Prescriptions</a></li>
                 <li><a href="editInfo.php">Edit Info</a></li>
             </ul>

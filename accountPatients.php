@@ -48,7 +48,7 @@ else
             <ul class="clear nav nav-tabs">
                 <li class="active"><a href="accountPatients.php">Vitals</a></li>
                 <!-- <li><a href="accountPatients.php">Notes</a></li> -->
-                <li><a href="accountPatients.php">Messages</a></li>
+                <li><a href="messagePage.php">Messages</a></li>
                 <li><a href="updateInfo.php">Update Info</a></li>
             </ul>
 
