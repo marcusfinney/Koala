@@ -66,6 +66,7 @@ $newrecord = mysql_query($sql); */
 $to = "garciajd90@gmail.com";
 $subject = "Prescription request";
 $message = "Prescription Name: " . $presName . "\n" .
+			"Patient Name: " . $_SESSION["patientrecord"]["firstname"] . " " . $_SESSION["patientrecord"]["lastname"] . "\n" .
 		   "Prescription Quantity: " . $presQuantity . "\n" .
 		   "Prescription Application: " . $presApp . "\n" . 
 		   "Prescription Refill Date: " . $presRefill;
@@ -77,6 +78,6 @@ mail($to,$subject,$message,$headers);
 echo "Mail Sent.";
 
 // Success status
-header("location: prescriptionPage.php?status=success");
+//header("location: prescriptionPage.php?status=success");
 
 ?>
