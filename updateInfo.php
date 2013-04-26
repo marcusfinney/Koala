@@ -59,12 +59,8 @@ else
             <div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
                 <div class="row">
 
-                    <div class="span9 offset3">
-                        <!-- <h3><?php echo "{$_SESSION['patientrecord']['lastname']}, {$_SESSION['patientrecord']['firstname']}";?></h3> -->
-
-                        <form class="form-horizontal" method="post" action="updateInfoController.php">
-
-                            <!-- UPDATE  `Koala`.`Patients` SET  `email` =  'jose@email.com' WHERE  `Patients`.`idpatient` =14; -->
+                    <form class="form-horizontal" method="post" action="updateInfoController.php">
+                        <div class="span6">
 
                             <?php
                                 $p = $_SESSION["patientrecord"];
@@ -84,23 +80,6 @@ else
                                 </div>
                             </div>
 
-                            <!-- <div class="control-group">
-                                <label class="control-label" for="idnurse">Assigned Nurse</label>
-                                <div class="controls">
-                                    <select id="idnurse" name="idnurse"<?php if ($accountType == 2 or $accountType == 3) echo ' disabled';?>>
-                                        <option value="0">None Selected</option>
-                                        <?php
-                                            while ($nurse = mysql_fetch_assoc($nurses))
-                                            {
-                                                $selected = '';
-                                                if ($nurse['idnurse'] == $p['idnurse']) $selected = ' selected="selected"';
-                                                echo "<option value={$nurse['idnurse']}{$selected}>{$nurse['lastname']}, {$nurse['firstname']}</option>";
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div> -->
-
                             <div class="control-group">
                                 <label class="control-label" for="firstname">First Name</label>
                                 <div class="controls">
@@ -119,15 +98,6 @@ else
                                 <label class="control-label" for="age">Age</label>
                                 <div class="controls">
                                     <input type="number" min="1" max="150" id="age" name="age" value=<?php echo $p["age"];?> required="required">
-                                    <!--
-                                    <?php 
-                                        echo "<select name='age'>";
-                                        for ($i = 0; $i <= 150; $i++) {
-                                            echo "<option value='$i'>$i</option>";
-                                        }
-                                        echo "</select>"; 
-                                    ?>
-                                    -->
                                 </div>
                             </div>
 
@@ -149,13 +119,6 @@ else
                                 </div>
                             </div>
 
-                            <!-- <div class="control-group">
-                                <label class="control-label" for="confirmemail">Confirm Email</label>
-                                <div class="controls">
-                                    <input type="email" id="confirmemail" name="confirmemail">
-                                </div>
-                            </div> -->
-
                             <div class="control-group">
                                 <label class="control-label" for="telephone">Phone Number</label>
                                 <div class="controls">
@@ -163,25 +126,16 @@ else
                                 </div>
                             </div>
 
-                            <!-- <div class="control-group">
-                                <label class="control-label" for="password">Password</label>
-                                <div class="controls">
-                                    <?php
-                                        if (isset($_GET) and isset($_GET["error"]) and $_GET["error"] == "passwordmismatch") {
-                                            echo '<p class="label label-important fadeIn">Passwords do not match.</p><br>';
-                                        }
-                                    ?>
-                                    <input type="password" id="password" name="password">
-                                </div>
-                            </div> -->
-
                             <div class="control-group">
                                 <label class="control-label" for="address">Address</label>
                                 <div class="controls">
-                                    <!-- <input type="text" id="address" name="address"> -->
                                     <textarea id="address" name="address"><?php echo $p["address"];?></textarea>
                                 </div>
                             </div>
+
+                        </div>
+                        
+                        <div class="span5">
 
                             <div class="control-group">
                                 <div class="controls">
@@ -229,9 +183,8 @@ else
                                 </div>
                             </div>
 
-                        </form>
-
-                    </div>
+                        </div>
+                    </form>
 
                 </div>
 
