@@ -20,11 +20,11 @@ else
         header("Location: accountNurses.php?error=noneselected");
         die();
     }
-    // if ($accountType == 3)
-    // {
-    //     header("Location: accountPatients.php?error=unauthorized");
-    //     die();
-    // }
+    if ($accountType == 3)
+     {
+        header("Location: accountPatients.php?error=unauthorized");
+        die();
+     }
 }
 ?>
 
@@ -48,8 +48,10 @@ else
             ?>
             <a href="logout.php"><h1 class="pull-right btn btn-inverse">Sign Out</h1></a>
 
+            <!-- Defining who can see what tabs and where tabs link too-->
             <ul class="clear nav nav-tabs">
                 <?php if ($accountType == 1) echo '<li><a href="accountDoctors.php">Select Patient</a></li>'; ?>
+                <?php if ($accountType == 2) echo '<li><a href="accountNurses.php">Select Patient</a></li>'; ?>
                 <li><a href="vitalm.php">Vitals</a></li>
                 <?php if ($accountType != 3) echo '<li class="active"><a href="notes.php">Notes</a></li>'; ?>
                 <?php if ($accountType != 2) echo '<li><a href="messagePage.php">Messages</a></li>' ;?>
@@ -63,6 +65,7 @@ else
                     
                     <div class="span5 offset1">
                         <br><br><br>
+                        <!--Following code is for the table of notes -->
                         <table class="table table-striped message-table">
                         <?php
                             include 'config.php';
@@ -71,7 +74,8 @@ else
 
                             $doctorid = $_SESSION["patientrecord"]["iddoctor"];
                             $patientid = $_SESSION["patientrecord"]["idpatient"];
-            
+                                
+                            //pulling notes from server    
                             $sql = "SELECT * 
                                     FROM  Notes
                                     WHERE iddoctor={$doctorid} AND  idpatient={$patientid}
@@ -111,6 +115,8 @@ else
                             } 
                             $i=$messagecount-1;   
                             $m=$messagecount-1;
+
+                            //printing the array of notes into table
                             while($i>=0)
                                 {
                                 print $messagereport[$i];
