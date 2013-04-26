@@ -57,7 +57,7 @@ else
                 <div class="row">
                     
                     <div class="span5 offset1">
-                        <br><br><br><br>
+                        <br><br><br>
                         <table class="table table-striped message-table">
                         <?php
                             include 'config.php';
@@ -70,7 +70,7 @@ else
                             $sql = "SELECT * 
                                     FROM  messages
                                     WHERE iddoctor={$doctorid} AND  idpatient={$patientid}
-                                    ORDER BY dateandtime DESC";
+                                    ORDER BY dateandtime ASC";
             
                             $mymessages = mysql_query($sql)or die('Invalid query: ' .mysql_error());
             
@@ -124,7 +124,7 @@ else
 
                             <div class="control-group">
                                 <div class="controls">
-                                    <br><br><br>
+                                    <br><br>
                                     <h3>Create a Message</h3>
                                 </div>
                             </div>
