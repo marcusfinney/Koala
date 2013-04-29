@@ -51,7 +51,7 @@
                         ?>
                         <input class="btn btn-primary" type="submit" name="submit" value="Login">
                         <!-- THIS CURRENTLY GOES NOWHERE -->
-                        <small><a href="">Forgot password?</a></small>
+                        <small><a href="index.php?status=forgotpassword">Forgot password?</a></small>
                     </div>
                 </div>
 
@@ -73,6 +73,14 @@
         <?php
         	if ($_GET and $_GET["error"] == "unauthorized") {echo '<script>alert("You must be logged to view that page.")</script>';}
 			if (isset($_SESSION['username'])){die();}
+			
+			if (isset($_GET))
+            {
+                if (isset($_GET["status"]) and $_GET["status"] == "forgotpassword")
+                {
+                    echo '<script>alert("Please contact your doctor or call (734)358-9617 for assistance.")</script>';
+                }
+            }
         ?>
     </body>
 </html>

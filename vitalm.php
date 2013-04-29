@@ -93,7 +93,7 @@ $jsonTable = json_encode($table);
                 <?php if ($accountType != 2) echo '<li><a href="messagePage.php">Messages</a></li>'; ?>
                 <?php if ($accountType == 1) echo '<li><a href="prescriptionPage.php">Prescriptions</a></li>'; ?>
                 <?php if ($accountType != 3) echo '<li><a href="editInfo.php">Edit Info</a></li>';?>
-                <?php if ($accountType == 3) echo '<li><a href="updateInfo.php">Update	 Info</a></li>';?>
+                <?php if ($accountType == 3) echo '<li><a href="updateInfo.php">Update Info</a></li>';?>
             </ul>
 			<div class="<?php if (!$_GET or isset($_GET["status"])) echo 'fadeIn ';?>tabcontent">
 				<div class="container-fluid">
@@ -124,7 +124,6 @@ $jsonTable = json_encode($table);
                             				$sql = "SELECT * 
 											FROM  Vitals
 											WHERE iddoctor={$doctorID}
-											AND  idnurse={$nurseID}
 											AND  idpatient={$patientID}
 											ORDER BY iddoctor={$doctorID} DESC";	
                             
@@ -134,7 +133,7 @@ $jsonTable = json_encode($table);
 
                             				if ($numberofvitals == 0) 
                             				{
-												echo 'No vitals entered.';
+												echo '<pre>'.'                 '.'No vitals entered.'.'</pre>';
                             				}
                             				else
                             				{
@@ -168,13 +167,18 @@ $jsonTable = json_encode($table);
 											$vitalcount++;
  							    			} 
  							    			$i=$vitalcount-1;	
- 							    			$m=$vitalcount-1;
  							    			while($i>=0)
  							    				{
  							   					print $vitalreport[$i];
  							    				$i--;
  							    				}
  											}
+ 											$m=0;
+ 							    			if(isset($vitalcount))
+ 							    			{
+ 							    				if(isset($m))
+ 							    				{$m=$vitalcount-1;}
+ 							    			}
  											//for line chart
  											$j=$m;
      					 		  			if($j>2){
@@ -200,7 +204,6 @@ $jsonTable = json_encode($table);
                             				$sql = "SELECT * 
 											FROM  Bounds
 											WHERE iddoctor={$doctorID}
-											AND  idnurse={$nurseID}
 											AND  idpatient={$patientID}
 											ORDER BY iddoctor={$doctorID} DESC";	
                             
@@ -260,7 +263,8 @@ $jsonTable = json_encode($table);
 											//so the warning level can't go below zero
 											if($Warning<=0)
 											{$Warning = 0;}   
-                                			}$b=0;*/
+                                			}$b=0;
+                                			*/
                         				?> 
      					 				<tr></tr>
 									</table>
@@ -279,7 +283,7 @@ $jsonTable = json_encode($table);
                    				     	$vitalsNP = '<div class="control-group">
                                				<label class="control-label" for="timeofday"></label>
                                				<div class="controls">
-												<select id="timeofday" name="timeofday" required="required">
+												<select id="timeofday" class="span10" name="timeofday" required="required">
  													<option value="">Time of Day</option>
  													<option value="0">Morning</option>
  													<option value="1">Afternoon</option>
@@ -288,29 +292,20 @@ $jsonTable = json_encode($table);
                                 			</div>
                            			 	</div>
                             			<div class="control-group">
-                               				<label class="control-label" for="heartrate"></label>
+                               				<label class="control-label" for="HRBS"></label>
                              			   	<div class="controls">
-                                    			<input type="number" step="any" id="heartrate" placeholder="Heart Rate(bpm)" name="heartrate" required="required">
+                                    			<input type="number" class="span5" step="any" id="heartrate" placeholder="Heart Rate(bpm)" name="heartrate" required="required">
+                                   				<input type="number" class="span5" step="any" id="bloodsugar" placeholder="Blood Sugar(mg/dl)" name="bloodsugar" required="required">
                                 			</div>
                             			</div>
                             			<div class="control-group">
-                               			 	<label class="control-label" for="bloodsugar"></label>
+                                			<label class="control-label" for="BPW"></label>
                                 			<div class="controls">
-                                   				<input type="number" step="any" id="bloodsugar" placeholder="Blood Sugar(mg/dl)" name="bloodsugar" required="required">
-                               				</div>
-                            			</div>
-                            			<div class="control-group">
-                                			<label class="control-label" for="bloodpressure"></label>
-                                			<div class="controls">
-                                    			<input type="number" step="any" id="bloodpressure" placeholder="Blood Pressure(mmHg)" name="bloodpressure" required="required">
+                                    			<input type="number" class="span5" step="any" id="bloodpressure" placeholder="Blood Pressure(mmHg)" name="bloodpressure" required="required">
+                                    			<input type="number" class="span5" step="any" id="weight" placeholder="Mass(kg)" name="weight" required="required">
                                 			</div>
                             			</div>
-                            			<div class="control-group">
-                                			<label class="control-label" for="weight"></label>
-                                			<div class="controls">
-                                   				<input type="number" step="any" id="weight" placeholder="Mass(kg)" name="weight" required="required">
-                                			</div>
-                            			</div>'; 	
+                            			'; 	
                             			
                             			$vitalsD = '<div class="control-group">
                                			<label class="control-label" for="heartratebounds"></label>
@@ -322,7 +317,7 @@ $jsonTable = json_encode($table);
   					  				<div class="control-group">
                                			<label class="control-label" for="bloodsugarbounds"></label>
                              			   	<div class="controls">
-                                    			<input class="span5" type="number" step="any" id="BSmn" placeholder="Blood Sugar Min" name="BSmin" required="required">
+                                    			<input class="span5" type="number" step="any" id="BSmn" placeholder="Blood Sugar Min" name="BSmin" required="required">	
                                     			<input class="span5" type="number" step="any" id="BSmax" placeholder="Blood Sugar Max" name="BSmax" required="required">
                                 			</div>
                             		</div>  
@@ -362,32 +357,32 @@ $jsonTable = json_encode($table);
                           					{
                           						if($accountType==(1))
                           						{
-                          							echo '<p class="label label-inverse fadeIn">Weekly Bounds Successfully entered</p><br>';
+                          							echo '<p class="label label-inverse fadeIn span10">Weekly Bounds Successfully entered</p><br>';
 
                           						}
                           						elseif(($accountType==2))
                           						{
                           							$feed = $m+1;
-                               				 		echo '<p class="label label-inverse fadeIn">Vitals Successfully entered ('.$feed.')</p><br>';
+                               				 		echo '<p class="label label-inverse fadeIn span10">Vitals Successfully entered ('.$feed.')</p><br>';
                           						} 
                           						elseif(($accountType==3))
                           						{
                           							$feed = $m+1;
-                               				 		echo '<p class="label label-inverse fadeIn">Vitals Successfully entered ('.$feed.')</p><br>';
+                               				 		echo '<p class="label label-inverse fadeIn span10">Vitals Successfully entered ('.$feed.')</p><br>';
                           						}                     						
                             				}    										
     										if($accountType==(1))
                           						{
-                          							echo '<input class="btn btn-primary span5" type="submit" value="Enter Ranges">';
+                          							echo '<input class="btn btn-primary span10" type="submit" value="Enter Ranges">';
 
                           						}
                           						elseif(($accountType==2))
                           						{
-                               				 		echo '<input class="btn btn-primary span5" type="submit" value="Enter Vitals">';
+                               				 		echo '<input class="btn btn-primary span10" type="submit" value="Enter Vitals">';
                           						} 
                           						elseif(($accountType==3))
                           						{
-                               				 		echo '<input class="btn btn-primary span5" type="submit" value="Enter Vitals">';
+                               				 		echo '<input class="btn btn-primary span10" type="submit" value="Enter Vitals">';
                           						} 
                         					?>
                                 			</div>
