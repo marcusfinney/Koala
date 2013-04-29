@@ -27,7 +27,6 @@ else
     }
 }
 
-//$iddoctor           = $_SESSION["userrecord"]["iddoctor"];
 $firstname          = $_POST["firstname"];
 $lastname           = $_POST["lastname"];
 $age                = $_POST["age"];
@@ -64,35 +63,25 @@ mysql_connect($host, $user, $password) or die("cant connect");
 mysql_select_db($database) or die(mysql_error());
 
 $sql = "SELECT *
-        FROM Doctors
+        FROM Nurses
         WHERE username='{$username}'";
-$existingdoctor = mysql_query($sql);
+$existingnurse = mysql_query($sql);
 
-if (mysql_num_rows($existingdoctor) == 1)
+if (mysql_num_rows($existingnurse) == 1)
 {
     header('location: accountAdmins.php?error=usernametaken');
     die();
 }
 
-$sql = "INSERT INTO Doctors (firstname, lastname, tele, address, age, gender, email, username, password, association)
-        VALUES ('$firstname', '$lastname', $tele, '$address', $age, '$gender', '$email', '$username', '$ppassword', 1)";
+$sql = "INSERT INTO Nurses (firstname, lastname, tele, address, age, gender, email, username, password, association)
+        VALUES ('$firstname', '$lastname', $tele, '$address', $age, '$gender', '$email', '$username', '$ppassword', 2)";
 $newrecord = mysql_query($sql);
 
 if ($newrecord)
 {
-    header('location: accountAdmins.php?status=success');
-    //echo '<META HTTP-EQUIV="Refresh" Content="0; URL=accountAdmins.php?status=success">';
+    header('location: accountAdminNurse.php?status=success');
 }
 
-        
-// $sql = "INSERT INTO {$location} (iddoctor, username, password, email, firstname, lastname, age, gender, association) VALUES ('$myiddoctor','$myusername','$mypassword','$myemail','$myfirstname','$mylastname','$myage','$mygender', '$myassociation')";
-// $result = mysql_query($sql);
 
-// if ($result) 
-// {
-//     echo "<script>alert('You have successfully registered a new user.');</script>";
-//     echo '<META HTTP-EQUIV="Refresh" Content="0; URL=accountDoctors.php">';    
-
-// }
 
 ?>

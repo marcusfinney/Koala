@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `Notes` (
 --
 
 CREATE TABLE IF NOT EXISTS `Nurses` (
-  `idnurse` int(11) NOT NULL,
+  `idnurse` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(20) NOT NULL,
   `lastname` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,

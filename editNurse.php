@@ -16,18 +16,14 @@ else
         die();
     }
 
-    // if ($accountType == 3)
-    // {
-    //     header("Location: accountPatients.php?error=unauthorized");
-    //     die();
-    // }
+
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Edit Doctor Info | Well-Check Clinic</title>
+        <title>Edit Nurse Info | Well-Check Clinic</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/style.css">
@@ -49,8 +45,8 @@ else
 
 
             <ul class="clear nav nav-tabs">
-                <li class="active"><a href="accountAdmins.php">Manage Doctor Accounts</a></li>
-                <li ><a href="accountAdminNurse.php">Manage Nurse Accounts</a></li>
+                <li ><a href="accountAdmins.php">Manage Doctor Accounts</a></li>
+                <li class="active"><a href="accountAdminNurse.php">Manage Nurse Accounts</a></li>
 
             </ul>
             
@@ -58,14 +54,14 @@ else
                 <div class="row">
 
                     <div class="span9 offset3">
-                        <!-- <h3><?php echo "{$_SESSION['doctorrecord']['lastname']}, {$_SESSION['doctorrecord']['firstname']}";?></h3> -->
+                        <!-- <h3><?php echo "{$_SESSION['nurserecord']['lastname']}, {$_SESSION['nurserecord']['firstname']}";?></h3> -->
 
-                        <form class="form-horizontal" method="post" action="editDoctorController.php">
+                        <form class="form-horizontal" method="post" action="editNurseController.php">
 
                             <!-- UPDATE  `Koala`.`Patients` SET  `email` =  'jose@email.com' WHERE  `Patients`.`idpatient` =14; -->
             
                              <?php
-                                $p = $_SESSION["doctorrecord"];
+                                $p = $_SESSION["nurserecord"];
 
                                 include 'config.php';
                                 mysql_connect($host, $user, $password) or die("cant connect");
@@ -79,7 +75,7 @@ else
 
                             <div class="control-group">
                                 <div class="controls">
-                                    <h3>Edit Doctor info</h3>
+                                    <h3>Edit Nurse info</h3>
                                 </div>
                             </div>
 
@@ -187,7 +183,7 @@ else
                                                 echo '<p class="label label-important fadeIn">You must fill out all fields.</p><br>';
                                             }
                                         ?>
-                                        <input class="btn btn-primary" type="submit" value="Edit Doctor information">
+                                        <input class="btn btn-primary" type="submit" value="Edit Nurse information">
                                     </div>
 
 
@@ -197,7 +193,7 @@ else
                     </div>
                     
                     
-             <form class="form-horizontal" method="post" action="deleteDoctor.php">
+                    <form class="form-horizontal" method="post" action="deleteNurse.php">
 
                                 <div class="control-group">
                                     <div class="controls">

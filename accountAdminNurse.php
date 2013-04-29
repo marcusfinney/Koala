@@ -31,7 +31,7 @@ else
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Doctor Account | Well-Check Clinic</title>
+        <title>Nurse Account | Well-Check Clinic</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/style.css">
@@ -52,8 +52,8 @@ else
 
             
             <ul class="clear nav nav-tabs">
-                <li class="active"><a href="accountAdmins.php">Manage Doctor Accounts</a></li>
-                <li><a href="accountAdminNurse.php">Manage Nurse Accounts</a></li>
+                <li ><a href="accountAdmins.php">Manage Doctor Accounts</a></li>
+                <li class="active"><a href="accountAdminNurse.php">Manage Nurse Accounts</a></li>
 
             </ul>
             
@@ -69,43 +69,30 @@ else
 
                             $myID = $_SESSION["userrecord"];
 
-                            $sql = "SELECT iddoctor, firstname, lastname
-                                    FROM Doctors ";
-                            $mydoctors = mysql_query($sql);
+                            $sql = "SELECT idnurse, firstname, lastname
+                                    FROM Nurses ";
+                            $mynurses = mysql_query($sql);
                             
-                            $numberofdoctors = mysql_num_rows($mydoctors);
+                            $numberofnurses = mysql_num_rows($mynurses);
 
-                            if ($numberofdoctors == 0) {
-                                echo '<p>You have no registered doctors.</p>';
+                            if ($numberofnurses == 0) {
+                                echo '<p>You have no registered nurses.</p>';
                             }
                             else {
-                                // ADD THE PAGE FOR VIEWING PATIENT DATA IN THE ACTION FIELD OF NEXT LINE
-
-                                // Non-bootstrapped version
-                                // echo '  <form>
-                                //             <select name="Patients">';
-                                // while ($row = mysql_fetch_assoc($mypatients)) {
-                                //     echo  "     <option value={$row['idpatient']}>{$row['lastname']}, {$row['firstname']}</option>";
-                                // }
-                                // echo '      </select>
-                                //             <br>
-                                //             <input class="btn btn-primary" type="submit" value="Select Patient">
-                                //         </form>';
-
-                                // Bootstrapped version
-                                echo '  <form class="form-horizontal" method="post" action="selectDoctor.php">
+                         
+                                echo '  <form class="form-horizontal" method="post" action="selectNurse.php">
 
                                             <div class="control-group">
                                                 <div class="controls">
-                                                    <h3>Select A Doctor</h3>
+                                                    <h3>Select A Nurse</h3>
                                                 </div>
                                             </div>
 
                                             <div class="control-group">
                                                 <div class="controls">
-                                                    <select name="Doctor">';
-                                while ($row = mysql_fetch_assoc($mydoctors)) {
-                                    echo  "             <option value={$row['iddoctor']}>{$row['lastname']}, {$row['firstname']}</option>";
+                                                    <select name="Nurse">';
+                                while ($row = mysql_fetch_assoc($mynurses)) {
+                                    echo  "             <option value={$row['idnurse']}>{$row['lastname']}, {$row['firstname']}</option>";
                                 }
                                 echo '              </select>
                                                 </div>
@@ -113,7 +100,7 @@ else
 
                                             <div class="control-group">
                                                 <div class="controls">
-                                                    <input class="btn btn-primary" type="submit" value="Select Doctor">
+                                                    <input class="btn btn-primary" type="submit" value="Select Nurse">
                                                 </div>
                                             </div>
 
@@ -124,11 +111,11 @@ else
 
                     <div class="span5">
                         <!-- <h4>Register a Patient</h4> -->
-                        <form class="form-horizontal" method="post" action="createDocnNurse.php">
+                        <form class="form-horizontal" method="post" action="createNurse.php">
 
                             <div class="control-group">
                                 <div class="controls">
-                                    <h3>Register A Doctor</h3>
+                                    <h3>Register A Nurse</h3>
                                 </div>
                             </div>
 
@@ -232,7 +219,7 @@ else
                                             echo '<p class="label label-important fadeIn">You must fill out all fields.</p><br>';
                                         }
                                     ?>
-                                    <input class="btn btn-primary" type="submit" value="Register Doctor">
+                                    <input class="btn btn-primary" type="submit" value="Register Nurse">
                                 </div>
                             </div>
 
@@ -248,11 +235,11 @@ else
             {
                 if (isset($_GET["status"]) and $_GET["status"] == "success")
                 {
-                    echo '<script>alert("Doctor successfully updated.")</script>';
+                    echo '<script>alert("Nurse successfully updated.")</script>';
                 }
                 if (isset($_GET["status"]) and $_GET["status"] == "deleted")
                 {
-                    echo '<script>alert("Doctor successfully deleted.")</script>';
+                    echo '<script>alert("Nurse successfully deleted.")</script>';
                 }
                 if (isset($_GET["error"]) and $_GET["error"] == "unauthorized")
                 {
