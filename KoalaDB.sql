@@ -26,7 +26,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `Admins` (
-  `idadmins` int(11) NOT NULL AUTO_INCREAMENT,
+  `idadmins` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(20) NOT NULL,
   `lastname` varchar(20) NOT NULL,
   `email` varchar(40) NOT NULL,
@@ -36,7 +36,8 @@ CREATE TABLE IF NOT EXISTS `Admins` (
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `gender` varchar(10) NOT NULL,
-  `association` int(5) NOT NULL
+  `association` int(5) NOT NULL,
+  PRIMARY KEY (`idadmins`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -128,7 +129,8 @@ CREATE TABLE IF NOT EXISTS `Nurses` (
   `age` int(5) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `gender` varchar(10) NOT NULL
+  `gender` varchar(10) NOT NULL,
+  PRIMARY KEY (`idnurse`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
