@@ -100,6 +100,12 @@ else
                                     </select>
                                 </div>
                             </div>
+                            <div class="control-group">
+                                <label class="control-label" for="presQuantity">Pharmacy</label>
+                                <div class="controls">
+                                	<input type="text" id="to" name="to" value=<?php echo $_SESSION["patientrecord"]["pharmacy"]; ?> >                                    
+                                </div>
+                            </div>                            
 
 
                             <div class="control-group">
@@ -134,6 +140,10 @@ else
                 if (isset($_GET["error"]) and $_GET["error"] == "noneselected")
                 {
                     echo '<script>alert("You must select a patient.")</script>';
+                }
+                if (isset($_GET["error"]) and $_GET["error"] == "nopharmacy")
+                {
+                	echo '<script>alert("You must set the email address associated to the patient in the edit info section.")</script>';
                 }
             }
         ?>

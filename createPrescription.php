@@ -29,6 +29,7 @@ else
 }
 
 $iddoctor			= $_SESSION["userrecord"]["iddoctor"];
+$to					= $_POST["to"];
 $presName			= $_POST["presName"];
 $presQuantity		= $_POST["presQuantity"];
 $presRefill			= $_POST["presRefill"];
@@ -40,7 +41,11 @@ if (!$presName or !$presQuantity or !$presRefill or $presApp == 0)
     header("location: prescriptionPage.php?error=incompleteform");
     die();
 }
-
+if($to == 'none')
+{
+	header("location: prescriptionPage.php?error=nopharmacy");
+	die();
+}
 if($presApp == 1) {
 	$presApp = "Once A Day";
 }
@@ -63,7 +68,6 @@ else{
 $newrecord = mysql_query($sql); */
 
 
-$to = "garciajd90@gmail.com";
 $subject = "Prescription request";
 $message = "Prescription Name: " . $presName . "\n" .
 			"Patient Name: " . $_SESSION["patientrecord"]["firstname"] . " " . $_SESSION["patientrecord"]["lastname"] . "\n" .
@@ -78,6 +82,9 @@ mail($to,$subject,$message,$headers);
 echo "Mail Sent.";
 
 // Success status
-//header("location: prescriptionPage.php?status=success");
+if(mail)
+header("location: prescriptionPage.php?status=success");
+else
+header("location: prescriptionPage.php?status=error");
 
 ?>

@@ -38,6 +38,7 @@ $gender = $_POST["gender"];
 $email = $_POST["email"];
 $telephone = $_POST["telephone"];
 $address = $_POST["address"];
+$pharmacy = $_POST["pharmacy"];
 
 // // make sure required fields aren't empty
 if (!$firstname or !$lastname or !$age or !$gender or !$email)
@@ -58,7 +59,7 @@ if ($_SESSION["userrecord"]["association"] == 1) {
             SET idnurse={$idnurse},
                 firstname='{$firstname}', lastname='{$lastname}',
                 age={$age}, gender='{$gender}',
-                email='{$email}', tele='{$telephone}', address='{$address}'
+                email='{$email}', tele='{$telephone}', address='{$address}', pharmacy='{$pharmacy}'
             WHERE idpatient={$idpatient}";
 }
 // // don't update nurse if current user is a nurse
@@ -66,7 +67,7 @@ elseif ($_SESSION["userrecord"]["association"] == 2 or $_SESSION["userrecord"]["
     $sql = "UPDATE Patients
             SET firstname='{$firstname}', lastname='{$lastname}',
                 age={$age}, gender='{$gender}',
-                email='{$email}', tele='{$telephone}', address='{$address}'
+                email='{$email}', tele='{$telephone}', address='{$address}', pharmacy='{$pharmacy}'
             WHERE idpatient={$idpatient}";
 }
 // // this is here just in case, but don't think it's possible for it to happen

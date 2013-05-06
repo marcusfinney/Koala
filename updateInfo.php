@@ -191,7 +191,7 @@ else
             </div>
         </div>
 
-        <!--<?php
+        <?php
             if (isset($_GET))
             {
                 if (isset($_GET["status"]) and $_GET["status"] == "success")
@@ -199,7 +199,7 @@ else
                     echo '<script>alert("Account Infomation Successfully Updated")</script>';
                 }
             }
-        ?> -->
+        ?>
 
     </body>
 </html>

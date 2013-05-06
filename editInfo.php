@@ -154,6 +154,12 @@ else
                                     <input type="email" id="email" name="email" value=<?php echo $p["email"];?> required="required">
                                 </div>
                             </div>
+                            <div class="control-group">
+                                <label class="control-label" for="email">Pharmacy</label>
+                                <div class="controls">
+                                    <input type="email" id="pharmacy" name="pharmacy" value='<?php echo $p["pharmacy"];?>' required="required">
+                                </div>
+                            </div>                            
 
                             <!-- <div class="control-group">
                                 <label class="control-label" for="confirmemail">Confirm Email</label>
